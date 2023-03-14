@@ -109,5 +109,5 @@ To ensure the services are running, you can click on the following URLs:
 * The URL with the token can be taken from container logs using:
  
 ```
-docker logs $(docker ps -q --filter "ancestor=jupyter/pyspark-notebook:spark-3.2.0") 2>&1 | grep 'http://127.0.0.1' | tail -1
+docker logs $(docker ps -q --filter "ancestor=docker-jupyter") 2>&1 | grep 'http://127.0.0.1' | tail -1
 ```
