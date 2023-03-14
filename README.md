@@ -89,6 +89,27 @@ Navigate to the `jupyter` directory, this is where the `Dockerfile` is located:
 docker build --rm --force-rm -t oasis-jupyter:latest . 
 ```
 
+### Starting Services
+- We will be using the `docker-compose.yml` file to run the image.
+
+After building the dockerfile & pulling the necessary images, you're ready to rock n roll. 
+- Navigate to the `docker` directory:
+- Run the following command to start the services:
+
+~~~
+docker compose -f docker-compose.yml up -d
+~~~
+
+To ensure the services are running, you can click on the following URLs:
+
+### Jupyter: http://localhost:8888
+
+* For Jupyter notebook, you must copy the URL with the token generated when the container is started and paste in your browser. 
+* The URL with the token can be taken from container logs using:
+ 
+```
+docker logs $(docker ps -q --filter "ancestor=jupyter/pyspark-notebook:spark-3.2.0") 2>&1 | grep 'http://127.0.0.1' | tail -1
+```
 
 
 
