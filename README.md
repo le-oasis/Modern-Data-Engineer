@@ -47,12 +47,7 @@ Gitpod: Gitpod is an open-source platform for automated and ready-to-code develo
 | Apache Spark | 3.2.0 | [Documentation](https://spark.apache.org/docs/3.2.0/) |
 | Apache Hadoop | 3.2 | [Documentation](https://spark.apache.org/docs/3.2.0/) |
 | Apache Kafka | 2.8.1 | [Documentation](https://kafka.apache.org/documentation/) |
-| Apache Flink | 1.14.0 | [Documentation](https://flink.apache.org/) |
-| Apache NiFi | 1.14.0 | [Documentation](https://nifi.apache.org/) |
-| Apache Airflow | 2.2.3 | [Documentation](https://airflow.apache.org/docs/apache-airflow/stable/index.html) |
-| Elasticsearch | 7.15.1 | [Documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html) |
-| Kibana | 7.15.1 | [Documentation](https://www.elastic.co/guide/en/kibana/current/index.html) |
-| Grafana | 8.3.0 | [Documentation](https://grafana.com/docs/) |
+
 
 ---
 
@@ -62,7 +57,7 @@ Gitpod: Gitpod is an open-source platform for automated and ready-to-code develo
 Gain hands-on experience with Apache Spark using the spark-shell by delving into my comprehensive [Medium article](https://medium.com/@le.oasis/getting-started-with-apache-spark-sparksql-scala-with-mac-terminal-b9c9513c51f1). Discover the intricacies of Spark and learn how to write, test, and deploy Spark applications with ease. 
 
 ---
-# Volume 2:  
+# Volume 1:  
 - This chapter builds on the previous one by exploring the process of reading, transforming, and writing structured data through the DataFrame API and Spark SQL.
 - In this exercise, you will learn how to run Jupyter Notebook on Docker and use Spark to read and process raw text files. 
 - You will learn about the structure of DataFrames and how to work with schemas to make data engineering tasks easier and more efficient. 
