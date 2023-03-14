@@ -4,7 +4,7 @@ services:
   # Jupyter Notebook - PySpark Enabled
   jupyter:
         build:
-            context: jupyter
+            context: ./lakehouse/jupyter
         hostname: myjupyter
         container_name: jupyter
         networks:

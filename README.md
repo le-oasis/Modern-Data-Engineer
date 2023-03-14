@@ -89,6 +89,7 @@ Navigate to the `jupyter` directory, this is where the `Dockerfile` is located:
 docker build --rm --force-rm -t oasis-jupyter:latest . 
 ```
 
+
 ### Starting Services
 - We will be using the `docker-compose.yml` file to run the image.
 
@@ -97,7 +98,7 @@ After building the dockerfile & pulling the necessary images, you're ready to ro
 - Run the following command to start the services:
 
 ~~~
-docker compose -f docker-compose.yml up -d
+docker compose -f docker-compose.yml up --build -d
 ~~~
 
 To ensure the services are running, you can click on the following URLs:
@@ -110,9 +111,3 @@ To ensure the services are running, you can click on the following URLs:
 ```
 docker logs $(docker ps -q --filter "ancestor=jupyter/pyspark-notebook:spark-3.2.0") 2>&1 | grep 'http://127.0.0.1' | tail -1
 ```
-
-
-
-
-
-
