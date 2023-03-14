@@ -17,8 +17,6 @@ services:
           - ./spark/resources/jars:/home/jovyan/work/jars/
           - ./spark/conf:/usr/local/spark/conf
         restart: always
-        depends_on:
-          - mysql
 
 networks:
   oasiscorp:
