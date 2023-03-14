@@ -112,7 +112,8 @@ docker build --rm --force-rm -t oasis-jupyter:latest .
                 echo "Jupyter will be running on http://127.0.0.1:8888"
         }
 
-#### Running Jupyter Lab with Docker
+
+
 ##### `docker compose`
 - We will be using the `docker-compose.yml` file to run the image.
 
