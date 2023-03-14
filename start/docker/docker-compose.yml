@@ -12,10 +12,10 @@ services:
         ports:
           - "8888:8888"
         volumes:
-          - ./jupyter/notebooks:/home/jovyan/work/notebooks/
-          - ./spark/resources/data:/home/jovyan/work/data/
-          - ./spark/resources/jars:/home/jovyan/work/jars/
-          - ./spark/conf:/usr/local/spark/conf
+          - ${PWD}/start/docker/notebooks:/home/jovyan/work/notebooks/
+          - ${PWD}/spark/resources/data:/home/jovyan/work/data/
+          - ${PWD}/spark/resources/jars:/home/jovyan/work/jars/
+          - ${PWD}/spark/conf:/usr/local/spark/conf
         restart: always
 
 networks:
