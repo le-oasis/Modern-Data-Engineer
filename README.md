@@ -90,7 +90,30 @@ docker build --rm --force-rm -t oasis-jupyter:latest .
 ```
 
 
-#### Starting Services
+#### Running Jupyter Lab with Docker
+##### `run.sh`
+
+- Execute the following two simple steps to start the Jupyter process. This process will install and then start up Jupyter. 
+- If this is the first time installing the Jupyter Docker image, it will take a few minutes depending on your Internet connection. Once this Docker image is cached locally, starting and stopping the Jupyter environment will take no time at all.
+1.   cd volume-one/start/docker/
+2.   ./run.sh start
+
+- At this point you will have Jupyterlab running on your laptop.
+
+- Peeking at the `volume-one/start/docker/run.sh` script gives you more complete details regarding how the environment is set up. 
+
+- The start Function in the `run.sh` Script Ensures Your Local Environment Is Set Up As Expected, then Delegates the Actual Running of the Jupyter Container to the Docker Compose Process.
+
+    
+        function start() {
+                
+                createNetwork
+                docker-compose -f ${DOCKER_COMPOSE_FILE} up --build -d --remove-orphans jupyter
+                echo "Jupyter will be running on http://127.0.0.1:8888"
+        }
+
+#### Running Jupyter Lab with Docker
+##### `docker compose`
 - We will be using the `docker-compose.yml` file to run the image.
 
 After building the dockerfile & pulling the necessary images, you're ready to rock n roll. 

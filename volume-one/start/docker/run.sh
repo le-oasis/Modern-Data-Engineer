@@ -35,7 +35,7 @@ function start() {
   # sparkExists
   createNetwork
   docker-compose -f ${DOCKER_COMPOSE_FILE} up --build -d --remove-orphans jupyter
-  echo "Jupyter will be running on http://127.0.0.1:8080"
+  echo "Jupyter will be running on http://127.0.0.1:8888"
 }
 
 function stop() {
