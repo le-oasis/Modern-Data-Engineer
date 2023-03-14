@@ -71,7 +71,7 @@ Gain hands-on experience with Apache Spark using the spark-shell by delving into
 ### Dockerfile: Build the Image.
 - This Dockerfile sets up an environment for working with Apache Spark, a distributed computing system used for processing large datasets. The image is based on a pre-existing image called `scipy-notebook` that includes many popular data science packages.
 
-- The Dockerfile installs `OpenJDK` , a package that includes the `Java Runtime(11)` Environment, and then downloads and installs `Spark (3.2.0)` . It sets environment variables for Spark and Hadoop (another distributed computing system that Spark can run on), and sets the working directory to the user's home directory.
+- The Dockerfile installs `OpenJDK` , a package that includes the `Java Runtime(11)` Environment, and then downloads and installs `Spark (3.2.0)` . It sets environment variables for Spark and Hadoop`3.2` (another distributed computing system that Spark can run on), and sets the working directory to the user's home directory.
 
 - It then installs Python packages listed in a file called `requirements.txt`  and sets the permissions for the Conda directory and the user's home directory. 
 
@@ -86,7 +86,7 @@ Navigate to the `jupyter` directory, this is where the `Dockerfile` is located:
 - It will take about ***10minutes*** to build, depending on yor internet speed / platform you use to build the image.
 
 ```
-docker build --rm --force-rm -t oasiscorp:latest . 
+docker build --rm --force-rm -t oasis-jupyter:latest . 
 ```
 
 

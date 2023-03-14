@@ -2,11 +2,11 @@ version: '3'
 services:
 
   # Jupyter Notebook - PySpark Enabled
-  jupyter-spark:
+  jupyter:
         build:
             context: jupyter
         hostname: myjupyter
-        container_name: jupyter_container
+        container_name: jupyter
         networks:
             - oasiscorp
         ports:
