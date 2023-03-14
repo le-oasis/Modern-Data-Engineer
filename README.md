@@ -65,10 +65,10 @@ Gain hands-on experience with Apache Spark using the spark-shell by delving into
 - We will be using the [Spark SQL and DataFrames](https://spark.apache.org/docs/latest/sql-programming-guide.html) documentation as a reference.
 
 
-## Setting Up Jupyter Notebook 
+### Setting Up Jupyter Notebook 
 - We will be using Jupyter Notebook to run our Spark code.
 
-### Dockerfile: Build the Image.
+#### Dockerfile: Build the Image.
 - This Dockerfile sets up an environment for working with Apache Spark, a distributed computing system used for processing large datasets. The image is based on a pre-existing image called `scipy-notebook` that includes many popular data science packages.
 
 - The Dockerfile installs `OpenJDK` , a package that includes the `Java Runtime(11)` Environment, and then downloads and installs `Spark (3.2.0)` . It sets environment variables for Spark and Hadoop`3.2` (another distributed computing system that Spark can run on), and sets the working directory to the user's home directory.
@@ -79,7 +79,7 @@ Gain hands-on experience with Apache Spark using the spark-shell by delving into
 
 - Overall, this `scipy-notebook` Dockerfile provides a simple way to set up a working environment for working with Apache Spark in Python.
 
-### File Location:
+#### File Location:
 Navigate to the `jupyter` directory, this is where the `Dockerfile` is located:
 
 - `start` --> `docker` --> `lakehouse`  --> `jupyter` --> `Dockerfile`.
@@ -90,7 +90,7 @@ docker build --rm --force-rm -t oasis-jupyter:latest .
 ```
 
 
-### Starting Services
+#### Starting Services
 - We will be using the `docker-compose.yml` file to run the image.
 
 After building the dockerfile & pulling the necessary images, you're ready to rock n roll. 
@@ -103,7 +103,7 @@ docker compose -f docker-compose.yml up --build -d
 
 To ensure the services are running, you can click on the following URLs:
 
-### Jupyter: http://localhost:8888
+#### Jupyter: http://localhost:8888
 
 * For Jupyter notebook, you must copy the URL with the token generated when the container is started and paste in your browser. 
 * The URL with the token can be taken from container logs using:
