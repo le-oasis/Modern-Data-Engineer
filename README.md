@@ -47,6 +47,7 @@ Gitpod: Gitpod is an open-source platform for automated and ready-to-code develo
 | Apache Spark | 3.2.0 | [Documentation](https://spark.apache.org/docs/3.2.0/) |
 | Apache Hadoop | 3.2 | [Documentation](https://spark.apache.org/docs/3.2.0/) |
 | Apache Kafka | 2.8.1 | [Documentation](https://kafka.apache.org/documentation/) |
+| Java OpenJDK | 11 | [Documentation](https://docs.oracle.com/en/java/javase/11/) |
 
 
 ---
