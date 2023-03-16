@@ -20,6 +20,14 @@ cd  volume-two/start/docker/ && ./run.sh start
 
 Go to http://localhost:8888 to see the jupyter lab homepage.
 
+---
+* For Jupyter notebook, you must copy the URL with the token generated when the container is started and paste in your browser. 
+* The URL with the token can be taken from container logs using:
+ 
+```
+docker logs $(docker ps -q --filter "ancestor=docker-jupyter") 2>&1 | grep 'http://127.0.0.1' | tail -1
+```
+---
 
 
 
