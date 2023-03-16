@@ -58,15 +58,16 @@ Gitpod: Gitpod is an open-source platform for automated and ready-to-code develo
 Gain hands-on experience with Apache Spark using the spark-shell by delving into my comprehensive [Medium article](https://medium.com/@le.oasis/getting-started-with-apache-spark-sparksql-scala-with-mac-terminal-b9c9513c51f1). Discover the intricacies of Spark and learn how to write, test, and deploy Spark applications with ease. 
 
 ---
-# [Volume 1](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/volume-one/start/docker):  
+# [Volume 1](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/volume-one):  
 - This chapter builds on the previous one by exploring the process of reading, transforming, and writing structured data through the DataFrame API and Spark SQL.
 - In this exercise, you will learn how to run Jupyter Notebook on Docker and use Spark to read and process raw text files. 
 - You will learn about the structure of DataFrames and how to work with schemas to make data engineering tasks easier and more efficient. 
 - The goal is to help you leverage Spark to become a more efficient data engineer.
 - We will be using the [Spark SQL and DataFrames](https://spark.apache.org/docs/latest/sql-programming-guide.html) documentation as a reference.
 
+
 ---
-# [Volume 2](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/volume-two/start/docker):  
+# [Volume 2](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/volume-two):  
 - The previous volume introduced Docker and Jupyter Lab for Spark explorations. 
 - It focused on transforming loosely structured data to highly structured data using explicit schemas and an ETL job. 
 - This process is the first step in a data transformation pipeline because data ingestion often begins at the data lake.
