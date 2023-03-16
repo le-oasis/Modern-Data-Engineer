@@ -136,3 +136,16 @@ To ensure the services are running, you can click on the following URLs:
 ```
 docker logs $(docker ps -q --filter "ancestor=docker-jupyter") 2>&1 | grep 'http://127.0.0.1' | tail -1
 ```
+
+
+---
+# Volume 2:  
+- The previous volume introduced Docker and Jupyter Lab for Spark explorations. 
+- It focused on transforming loosely structured data to highly structured data using explicit schemas and an ETL job. 
+- This process is the first step in a data transformation pipeline because data ingestion often begins at the data lake.
+- The current volume explores data transformation through simple selection and projection techniques, joins, and intuitive problem-solving methods like inner and outer selections, expression columns, and select expressions. 
+- The Spark SQL and DataFrame APIs can be used to express these transformations.
+
+---
+
+
