@@ -12,31 +12,6 @@ Harnessing the incredible power of Apache Spark to orchestrate consistent scalab
 - This repository is a work in progress and is not complete.
 - The contents of this repo are written with macOS and Linux systems in mind.
 
-## Pre-requisites
-
-Docker: Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers.
-
-- Docker Image: A Docker image is a file used to execute code in a Docker container. Docker Images act as a set of instructions to build a Docker container, like a template. Docker Images also act as the starting point when using Docker. 
-
-    * An image resembles a snapshot in virtual machine (VM) environments.
-
-- Dockerfile: A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.
-
-- Docker Compose: A tool for defining and running multi-container Docker applications.
-
-    - With docker-compose, we can create a YAML file to define the services and, with a single command, spin everything up or tear it all down.
-    - This process's most significant pain points revolve around consistency and runtime guarantees. 
-    - Often, what works locally for you may operate with a different level of finesse (or at all) for other engineers (so beware; there might/will be bugs). 
-
-Container: A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.
-
-Gitpod: Gitpod is an open-source platform for automated and ready-to-code development environments that blends into the existing dev workflow.
-
-    - We will use Gitpod as our development environment. 
-    - It ships with a built-in Docker instance to run docker-compose commands in the cloud.
-
-- YAML: YAML is a powerful language that can be used for configuration files, messages between applications, and saving application state.
-
 ---
 # Tech Stack
 
@@ -66,19 +41,80 @@ Gain hands-on experience with Apache Spark using the spark-shell by delving into
 - We will be using the [Spark SQL and DataFrames](https://spark.apache.org/docs/latest/sql-programming-guide.html) documentation as a reference.
 
 
+#### Jupyter Dockerfile: Build the Image.
+- This Dockerfile sets up an environment for working with Apache Spark, a distributed computing system used for processing large datasets. The image is based on a pre-existing image called `scipy-notebook` that includes many popular data science packages.
+
+- The Dockerfile installs `OpenJDK`, a package that includes the `Java Runtime(11)` Environment, and then downloads and installs `Spark (3.2.0)` . It sets environment variables for Spark and Hadoop`3.2` (another distributed computing system that Spark can run on), and sets the working directory to the user's home directory.
+
+- It then installs Python packages listed in a file called `requirements.txt`  and sets the permissions for the Conda directory and the user's home directory. 
+
+- Finally, it exposes ports 4040, 8088, and 8089 for the container to use.
+
+- Overall, this `scipy-notebook` Dockerfile provides a simple way to set up a working environment for working with Apache Spark in Python.
+
+#### File Location:
+Navigate to the `jupyter` directory, this is where the `Dockerfile` is located:
+
+- `start` --> `docker` --> `lakehouse`  --> `jupyter` --> `Dockerfile`.
+- It will take about ***10minutes*** to build, depending on yor internet speed / platform you use to build the image.
+
+```
+docker build --rm --force-rm -t oasis-jupyter:latest . 
+```
+
+
+#### Running Jupyter Lab with Docker
+##### `run.sh`
+
+- Execute the following two simple steps to start the Jupyter process. This process will install and then start up Jupyter. 
+- If this is the first time installing the Jupyter Docker image, it will take a few minutes depending on your Internet connection. Once this Docker image is cached locally, starting and stopping the Jupyter environment will take no time at all.
+1.   cd volume-one/start/docker/
+2.   ./run.sh start
+
+- At this point you will have Jupyterlab running on your laptop.
+
+- Peeking at the `volume-one/start/docker/run.sh` script gives you more complete details regarding how the environment is set up. 
+
+- The start Function in the `run.sh` Script Ensures Your Local Environment Is Set Up As Expected, then Delegates the Actual Running of the Jupyter Container to the Docker Compose Process.
+
+    
+        function start() {
+                
+                createNetwork
+                docker-compose -f ${DOCKER_COMPOSE_FILE} up --build -d --remove-orphans jupyter
+                echo "Jupyter will be running on http://127.0.0.1:8888"
+        }
+
+
+
+##### `docker compose`
+- We will be using the `docker-compose.yml` file to run the image.
+
+After building the dockerfile & pulling the necessary images, you're ready to rock n roll. 
+- Navigate to the `docker` directory:
+- Run the following command to start the services:
+
+~~~
+docker compose -f docker-compose.yml up --build -d
+~~~
+
+To ensure the services are running, you can click on the following URLs:
+
+#### Jupyter: http://localhost:8888
+
+* For Jupyter notebook, you must copy the URL with the token generated when the container is started and paste in your browser. 
+* The URL with the token can be taken from container logs using:
+ 
+```
+docker logs $(docker ps -q --filter "ancestor=docker-jupyter") 2>&1 | grep 'http://127.0.0.1' | tail -1
+```
+
 ---
 # [Volume 2](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/volume-two):  
 - The previous volume introduced Docker and Jupyter Lab for Spark explorations. 
-
-- The current volume explores data transformation through:
-
-    - simple selection and projection techniques
-    - filtering
-    - joins and aggregations
-    
+- The current volume explores data transformation through: simple selection and projection techniques, filtering, joins and aggregations.
 - It focused on transforming loosely structured data to highly structured data using explicit schemas and an ETL job. 
 - This process is the first step in a data transformation pipeline because data ingestion often begins at the data lake.
-
 - The Spark SQL and DataFrame APIs can be used to express these transformations.
 
 
