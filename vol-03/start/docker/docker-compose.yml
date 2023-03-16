@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  # Jupyter Notebook - PySpark Enabled
+  jupyter:
+        build:
+            context: ./lakehouse/jupyter
+        hostname: myjupyter
+        container_name: jupyter
+        networks:
+            - oasiscorp
+        ports:
+          - "8888:8888"
+        volumes:
+          - ${PWD}/notebooks:/home/jovyan/work/notebooks/
+          - ${PWD}/spark/resources/data:/home/jovyan/work/data/
+          - ${PWD}/spark/resources/jars:/home/jovyan/work/jars/
+          - ${PWD}/spark/conf:/usr/local/spark/conf
+        restart: always
+
+networks:
+  oasiscorp:
+    driver: bridge
