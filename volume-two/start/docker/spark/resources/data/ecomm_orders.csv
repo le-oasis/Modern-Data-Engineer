@@ -1,0 +1,11 @@
+id,eventType,subject,eventTime,customer_name,address,city,postalcode,country,phone,email,product_name,order_date,currency,order_mode,sale_price,order_number,dataVersion
+3001,recordInserted,ecomm/customers,2021-01-01,Julie Rich,Ap #255-3031 Dui Avenue,Billings,80834,USA,1-528-884-4331,Donec.felis@nequesedsem.ca,microwave,18/05/2021,EUR,NEW,32.34,385,1.0
+3002,recordInserted,ecomm/customers,2021-01-01,Ratnali Kumar,Ap #476-7527 Aenean Road,Bhilwara,827484,India,+91 0952796185,Donec.feugiat@felisadipiscing.co.uk,microwave,18/05/2021,USD,NEW,44.45,386,1.0
+3003,recordInserted,ecomm/customers,2021-01-01,Eden Byrd,3840 Sed St.,Milton Keynes,C4T 5H5,UK,00505 931979,lorem@idmagnaet.org,microwave,18/05/2021,USD,NEW,64.68,387,1.0
+3004,recordInserted,ecomm/customers,2021-01-01,Cara Swanson,"P.O. Box 998, 2884 Pharetra. Road",Harrisburg,65895,USA,1-375-910-8385,velit.justo@lacus.com,microwave,18/05/2021,INR,NEW,74.65,388,1.0
+3005,recordInserted,ecomm/customers,2021-01-01,Chaney Figueroa,546-5675 Pellentesque St.,Newport News,23276,USA,1-853-137-7417,hymenaeos@Suspendissealiquet.com,microwave,18/05/2021,EUR,NEW,85.48,389,1.0
+3006,recordInserted,ecomm/customers,2021-01-01,Naval Ismail,3687 Magnis Rd.,Itanagar,747675,India,+91 6997655593,fringilla.est.Mauris@nonsollicitudina.ca,microwave,18/05/2021,EUR,NEW,16.77,390,1.0
+3007,recordInserted,ecomm/customers,2021-01-01,Calista French,"P.O. Box 462, 5596 Morbi St.",Flin Flon,H5X 5P1,Canada,1 (879) 192-881,Etiam.vestibulum@nonlaciniaat.ca,microwave,18/05/2021,USD,NEW,17.98,391,1.0
+3008,recordInserted,ecomm/customers,2021-01-01,Magee Cash,"P.O. Box 728, 3231 Vel Street",Chesapeake,46087,USA,1-488-816-9178,ultrices.Vivamus@acarcu.co.uk,microwave,18/05/2021,CAD,NEW,94.88,392,1.0
+3009,recordInserted,ecomm/customers,2021-01-01,Alvin Russell,"P.O. Box 333, 5820 Vel Avenue",New Haven,14867,USA,1-117-280-4751,egestas@leoMorbi.com,microwave,18/05/2021,INR,NEW,24.98,393,1.0
+3010,recordInserted,ecomm/customers,2021-01-01,Chadwick Hebert,Ap #556-497 In Ave,Hamilton,K3W 8V9,Canada,1 (365) 681-6481,elit@cursus.org,microwave,18/05/2021,CAD,NEW,17.7,394,1.0
