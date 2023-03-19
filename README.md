@@ -34,29 +34,16 @@ Gain hands-on experience with Apache Spark using the spark-shell by delving into
 
 ---
 # [Volume 1](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/vol-01): 
-This chapter builds upon the previous one by delving deeper into the process of reading, transforming, and writing structured data using the DataFrame API and Spark SQL.
-
-- The exercise in this chapter will guide you through running Jupyter Notebook on Docker and using Spark to read and process raw text files.
+This volume will guide you through running Jupyter Notebook on Docker and using Spark to read and process raw text files.
 - You will learn about the structure of DataFrames and how to work with schemas to make data engineering tasks more efficient and streamlined.
 - The overarching goal is to help you leverage Spark to become a more efficient and effective data engineer.
 Throughout the exercise, we will be using the Spark SQL and DataFrames documentation as a reference to ensure we're following best practices and getting the most out of the tools.
 Specifically, you will learn about:
-
 - Running Jupyter Notebook on Docker
 - Reading and processing raw text files using Spark
 - Understanding the structure of DataFrames and how to work with schemas
 - Making data engineering tasks easier and more efficient with Spark
 - Leveraging the power of Spark to become a better data engineer
-
-
-
-
-- This chapter builds on the previous one by exploring the process of reading, transforming, and writing structured data through the DataFrame API and Spark SQL.
-- In this exercise, you will learn how to run Jupyter Notebook on Docker and use Spark to read and process raw text files. 
-- You will learn about the structure of DataFrames and how to work with schemas to make data engineering tasks easier and more efficient. 
-- The goal is to help you leverage Spark to become a more efficient data engineer.
-- We will be using the [Spark SQL and DataFrames](https://spark.apache.org/docs/latest/sql-programming-guide.html) documentation as a reference.
-
 
 #### Jupyter Dockerfile: Build the Image.
 - This Dockerfile sets up an environment for working with Apache Spark, a distributed computing system used for processing large datasets. The image is based on a pre-existing image called `scipy-notebook` that includes many popular data science packages.
