@@ -30,6 +30,7 @@ Two volumes will be mounted to the container:
 - A volume named `postgres-db-volume` will be mounted to the /var/lib/postgresql/data directory in the container. This is where Postgres will store its data.
 - A file named `create_ranger_users.sql` located in the ./lakehouse/postgres directory will be mounted to the /docker-entrypoint-initdb.d directory in the container. This file will be executed when the container is started and will create some Ranger users in the Postgres database.
 - An environment file named `.env` will be used to set environment variables in the container.
+- The environment variables will be used to set the username, password, and database name for the Postgres database.
 - The container will expose port 5432, which is the default port for Postgres.
 - A health check will be performed on the container every 5 seconds using the "pg_isready" command to ensure that the container is healthy.
 - The container will be restarted automatically if it fails or is stopped.
