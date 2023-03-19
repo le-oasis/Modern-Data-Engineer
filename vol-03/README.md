@@ -87,6 +87,53 @@ To verify that the container is running, run the following command:
 docker exec -it postgres psql -U oasis -d oasiscorp
 ```
 
+Great! You have successfully started the PostgreSQL container.
+
+### 2.0 Creating the Customers Table
+
+The customers table is a simple table storing customer information. This table represents a basic registered customer within CoffeeCo.
+To create the customers table, run the following command:
+
+```
+CREATE TABLE IF NOT EXISTS bettercustomers (
+  id SERIAL PRIMARY KEY,
+  created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE
+);
+
+```
+
+### 2.1. Inserting Data into the Customers Table
+The following command will insert data into the customers table:
+
+```
+INSERT INTO bettercustomers (first_name, last_name, email)
+VALUES ('John', 'Doe', 'johndoe@example.com'),
+       ('Jane', 'Smith', 'janesmith@example.com'),
+       ('Bob', 'Johnson', 'bobjohnson@example.com'),
+       ('Alice', 'Lee', 'alicelee@example.com'),
+       ('David', 'Kim', 'davidkim@example.com'),
+       ('Linda', 'Nguyen', 'lindanguyen@example.com'),
+       ('Mike', 'Garcia', 'mikegarcia@example.com'),
+       ('Emily', 'Chen', 'emilychen@example.com'),
+       ('Ryan', 'Wong', 'ryanwong@example.com'),
+       ('Karen', 'Zhao', 'karenzhao@example.com');
+
+
+```
+Let’s do a quick sanity check to make sure things look alright before we exit the Postgres shell and move over to the Jupyter Lab.
+
+### 2.2. Querying the Customers Table
+To query the customers table, run the following command:
+
+```
+SELECT * FROM bettercustomers;
+
+```
+Great! You have successfully created the customers table and inserted data into it.
 
 ### 2.1. Setting up Jupyter Notebook
 
