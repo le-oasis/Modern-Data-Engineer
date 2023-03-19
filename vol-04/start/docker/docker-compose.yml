@@ -39,6 +39,7 @@ services:
           - ${PWD}/spark/resources/data:/home/jovyan/work/data/
           - ${PWD}/spark/resources/jars:/home/jovyan/work/jars/
           - ${PWD}/spark/conf:/usr/local/spark/conf
+          - ${PWD}/spark/resources/sql/warehouse:/usr/local/spark/sql/
         restart: always
         depends_on:
           - postgres
@@ -56,7 +57,7 @@ services:
       ports:
         - "50070:50070"
       networks:
-        - mcstore
+        - oasiscorp
 
   # Datanode: A service that is used to manage the datanode.    
   datanode:
