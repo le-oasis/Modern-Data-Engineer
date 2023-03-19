@@ -111,6 +111,9 @@ services:
         restart: always
         depends_on:
                 - postgres
+
+
+
           
 
 # Volumes 
