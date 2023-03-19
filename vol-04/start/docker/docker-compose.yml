@@ -39,15 +39,15 @@ services:
           - ${PWD}/spark/resources/data:/home/jovyan/work/data/
           - ${PWD}/spark/resources/jars:/home/jovyan/work/jars/
           - ${PWD}/spark/conf:/usr/local/spark/conf
-          - ${PWD}/spark/resources/sql/warehouse:/usr/local/spark/sql/
         restart: always
         depends_on:
           - postgres
 
-# Namenode: A service that is used to manage the namenode.
+
+  # Namenode: HDFS
   namenode:
       image: dimeji/hadoop-namenode:latest
-      container_name: mcstore-hadoop-namenode
+      container_name: hadoop-namenode
       volumes:
         - namenode:/hadoop/dfs/name
       environment:
@@ -59,7 +59,7 @@ services:
       networks:
         - oasiscorp
 
-  # Datanode: A service that is used to manage the datanode.    
+  # Datanode: HDFS      
   datanode:
       image: dimeji/hadoop-datanode:latest
       container_name: hadoop-datanode
@@ -76,11 +76,11 @@ services:
       networks:
         - oasiscorp
 
-  # Hive: A service that is used to manage metadata.
+  # Hive: A Hive Metastore and a Hive Metastore Server
   hive:
       image: dimeji/hive-metastore
       hostname: hive
-      container_name: oasis-hive-metastore
+      container_name: hive-metastore
       env_file:
         - ${PWD}/hadoop-hive.env
       command: /opt/hive/bin/hive --service metastore
@@ -95,10 +95,12 @@ services:
         - oasiscorp
       restart: on-failure
 
-  # Hive Server  
+      # /opt/hive/conf
+
+  # Hive Server: A Hive Metastore and a Hive Metastore Server    
   hive-server:
       image: dimeji/hive-server
-      container_name: oasis-hive-server
+      container_name: hive-server
       env_file:
         - ${PWD}/hadoop-hive.env
       environment:
