@@ -70,6 +70,13 @@ The script is now complete and the Hive metastore database is initialized and re
 ## 2. Starting the Docker Container
 To start the PostgreSQL container, run the following command from the ./vol-02/start/docker directory:
 
+Start the Docker Container
+~~~
+cd  volume-two/start/docker/ && ./run.sh start
+~~~
+
+OR 
+
 ```
 docker compose -f docker-compose.yml up -d
 ```
@@ -80,19 +87,8 @@ To verify that the container is running, run the following command:
 docker exec -it postgres psql -U oasis -d oasiscorp
 ```
 
-### 2.1. Setting up your environment
 
-Setting up your environment is covered in Volume 1, but as long as you have the following set in your local env `bash or zsh`, you will be golden.
-1. JAVA_HOME - (must be java 8 or java 11)
-2. SPARK_HOME - (we are using spark 3x)
-
-
-Start the Docker Container
-~~~
-cd  volume-two/start/docker/ && ./run.sh start
-~~~
-
-### 2.2. Setting up Jupyter Notebook
+### 2.1. Setting up Jupyter Notebook
 
 Go to http://localhost:8888 to see the jupyter lab homepage.
 
