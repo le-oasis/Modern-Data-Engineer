@@ -33,7 +33,7 @@ Harnessing the incredible power of Apache Spark to orchestrate consistent scalab
 Gain hands-on experience with Apache Spark using the spark-shell by delving into my comprehensive [Medium article](https://medium.com/@le.oasis/getting-started-with-apache-spark-sparksql-scala-with-mac-terminal-b9c9513c51f1). Discover the intricacies of Spark and learn how to write, test, and deploy Spark applications with ease. 
 
 ---
-# [Volume 1](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/volume-one):  
+# [Volume 1](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/vol-01):  
 - This chapter builds on the previous one by exploring the process of reading, transforming, and writing structured data through the DataFrame API and Spark SQL.
 - In this exercise, you will learn how to run Jupyter Notebook on Docker and use Spark to read and process raw text files. 
 - You will learn about the structure of DataFrames and how to work with schemas to make data engineering tasks easier and more efficient. 
@@ -110,7 +110,7 @@ docker logs $(docker ps -q --filter "ancestor=docker-jupyter") 2>&1 | grep 'http
 ```
 
 ---
-# [Volume 2](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/volume-two):  
+# [Volume 2](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/vol-02):  
 - The previous volume introduced Docker and Jupyter Lab for Spark explorations. 
 - The current volume explores data transformation through: simple selection and projection techniques, filtering, joins and aggregations.
 - It focused on transforming loosely structured data to highly structured data using explicit schemas and an ETL job. 
@@ -118,5 +118,10 @@ docker logs $(docker ps -q --filter "ancestor=docker-jupyter") 2>&1 | grep 'http
 - The Spark SQL and DataFrame APIs can be used to express these transformations.
 
 
-
+# [Volume 3](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/vol-03): 
+- Learn to read and write data easily between Spark and any JDBC-compatible RDBMS database
+Databases that are compatible with JDBC include MySQL, PostgreSQL, Microsoft SQL Server, Azure SQL Database, Oracle, and others.
+- Gain the ability to load and transform data from external database rows into Spark DataFrames.
+- Write the modified data back to the original database, which is known as the "source-of-truth" database.
+- evelop a seamless workflow for exchanging data between Spark and various RDBMS databases.
 
