@@ -41,6 +41,10 @@ services:
           - ${PWD}/spark/conf:/usr/local/spark/conf
         restart: always
 
+# Volumes 
+volumes:
+  postgres-db-volume:
+
 networks:
   oasiscorp:
     driver: bridge

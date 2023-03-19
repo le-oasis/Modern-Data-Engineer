@@ -77,7 +77,7 @@ docker compose -f docker-compose.yml up -d
 To verify that the container is running, run the following command:
 
 ```
-docker exec -it  postgres psql -U oasis
+docker exec -it postgres psql -U oasis -d oasiscorp
 ```
 
 ### 2.1. Setting up your environment
