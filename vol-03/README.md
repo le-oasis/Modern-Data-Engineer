@@ -103,7 +103,6 @@ CREATE TABLE IF NOT EXISTS bettercustomers (
   last_name VARCHAR(100) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE
 );
-
 ```
 
 ### 2.1. Inserting Data into the Customers Table
@@ -121,8 +120,6 @@ VALUES ('John', 'Doe', 'johndoe@example.com'),
        ('Emily', 'Chen', 'emilychen@example.com'),
        ('Ryan', 'Wong', 'ryanwong@example.com'),
        ('Karen', 'Zhao', 'karenzhao@example.com');
-
-
 ```
 Let’s do a quick sanity check to make sure things look alright before we exit the Postgres shell and move over to the Jupyter Lab.
 
@@ -131,7 +128,6 @@ To query the customers table, run the following command:
 
 ```
 SELECT * FROM bettercustomers;
-
 ```
 Great! You have successfully created the customers table and inserted data into it.
 
