@@ -55,11 +55,17 @@ Gain hands-on experience with Apache Spark using the spark-shell by delving into
 
 ---
 # [Volume 2](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/vol-02):  
-- The previous volume introduced Docker and Jupyter Lab for Spark explorations. 
-- The current volume explores data transformation through: simple selection and projection techniques, filtering, joins and aggregations.
-- It focused on transforming loosely structured data to highly structured data using explicit schemas and an ETL job. 
-- This process is the first step in a data transformation pipeline because data ingestion often begins at the data lake.
-- The Spark SQL and DataFrame APIs can be used to express these transformations.
+- The previous volume introduced the concepts of Docker and Jupyter Lab as tools for conducting Spark explorations.
+- In the current volume, we will dive deeper into data transformation techniques using Spark.
+  - Specifically, we will cover the following topics:
+  - Simple selection and projection techniques for working with data subsets
+  - Filtering data based on specific criteria
+  - Joining datasets together to create a unified view of the data
+  - Aggregating data to create summary statistics and metrics
+
+Our focus will be on transforming loosely structured data into highly structured data by using explicit schemas and an ETL (Extract, Transform, Load) job.
+- This process is the first step in a data transformation pipeline, as data ingestion often begins at the data lake.
+- We will be using the Spark SQL and DataFrame APIs to express these transformations, which are powerful tools for data manipulation and transformation.
 
 
 # [Volume 3](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/vol-03): 
