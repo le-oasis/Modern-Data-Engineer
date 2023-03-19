@@ -56,8 +56,7 @@ Gain hands-on experience with Apache Spark using the spark-shell by delving into
 ---
 # [Volume 2](https://github.com/le-oasis/Modern-Data-Engineer/tree/main/vol-02):  
 - The previous volume introduced the concepts of Docker and Jupyter Lab as tools for conducting Spark explorations.
-- In the current volume, we will dive deeper into data transformation techniques using Spark.
-  - Specifically, we will cover the following topics:
+- In the current volume, we will dive deeper into data transformation techniques using Spark Specifically, we will cover the following topics:
   - Simple selection and projection techniques for working with data subsets
   - Filtering data based on specific criteria
   - Joining datasets together to create a unified view of the data
