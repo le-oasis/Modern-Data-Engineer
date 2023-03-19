@@ -4,8 +4,8 @@ services:
 
   # Postgres DB
   postgres:
-    hostname: mypostgres
-    container_name: postgres
+    hostname: oasispostgres
+    container_name: postgres_container
     build:
       context: ./lakehouse/postgres
       dockerfile: Dockerfile
@@ -24,27 +24,7 @@ services:
     networks:
      - oasiscorp
 
-  # Jupyter Notebook - PySpark Enabled
-  jupyter:
-        build:
-            context: ./lakehouse/jupyter
-        hostname: myjupyter
-        container_name: jupyter
-        networks:
-            - oasiscorp
-        ports:
-          - "8888:8888"
-        volumes:
-          - ${PWD}/notebooks:/home/jovyan/work/notebooks/
-          - ${PWD}/spark/resources/data:/home/jovyan/work/data/
-          - ${PWD}/spark/resources/jars:/home/jovyan/work/jars/
-          - ${PWD}/spark/conf:/usr/local/spark/conf
-        restart: always
-        depends_on:
-          - postgres
-
-
-  # Namenode: HDFS
+# Namenode: HDFS
   namenode:
       image: dimeji/hadoop-namenode:latest
       container_name: hadoop-namenode
@@ -85,7 +65,7 @@ services:
         - ${PWD}/hadoop-hive.env
       command: /opt/hive/bin/hive --service metastore
       environment:
-        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 mypostgres:5432"
+        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 oasispostgres:5432"
       ports:
         - "9083:9083"
       depends_on:
@@ -112,6 +92,25 @@ services:
         - hive
       networks:
         - oasiscorp
+
+
+  # Jupyter notebook
+  jupyter-spark:
+        hostname: myjupyter
+        container_name: jupyter_container
+        image: 'jupyter/pyspark-notebook:spark-3.2.0'
+        networks:
+            - oasiscorp
+        ports:
+          - "8888:8888"
+        volumes:
+          - ./notebooks:/home/jovyan/work/notebooks/
+          - ./spark/resources/data:/home/jovyan/work/data/
+          - ./spark/resources/jars:/home/jovyan/work/jars/
+          - ./spark/conf:/usr/local/spark/conf
+        restart: always
+        depends_on:
+                - postgres
           
 
 # Volumes 
