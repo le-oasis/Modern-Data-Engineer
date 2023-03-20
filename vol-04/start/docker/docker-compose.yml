@@ -127,6 +127,7 @@ services:
           - ${PWD}/spark/resources/data:/home/jovyan/work/data/
           - ${PWD}/spark/resources/jars:/home/jovyan/work/jars/
           - ${PWD}/spark/conf:/usr/local/spark/conf
+          - ${PWD}/spark/sql/:/usr/local/spark/sql/
         restart: always
         depends_on:
                   - postgres
