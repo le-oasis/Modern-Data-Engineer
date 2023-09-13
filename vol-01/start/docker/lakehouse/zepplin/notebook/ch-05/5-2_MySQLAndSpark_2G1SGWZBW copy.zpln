@@ -1,0 +1,1505 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n# MySQL DataSource via JDBC DataFrameReader\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-03-08 00:43:49.039",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eMySQL DataSource via JDBC DataFrameReader\u003c/h1\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614201359165_586278564",
+      "id": "paragraph_1614201359165_586278564",
+      "dateCreated": "2021-02-24 21:15:59.165",
+      "dateStarted": "2021-03-08 00:43:49.050",
+      "dateFinished": "2021-03-08 00:43:49.061",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nspark.sparkContext.getConf.toDebugString",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 18:38:27.049",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 251.39100000000002,
+              "optionOpen": false
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres1\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d\nPYSPARK_DRIVER_PYTHON\u003dpython\nPYSPARK_PYTHON\u003dpython\nSPARK_HOME\u003d/spark/spark-3.0.1-bin-hadoop3.2\nspark.app.id\u003dlocal-1658774315356\nspark.app.name\u003dspark-shared_process\nspark.driver.cores\u003d1\nspark.driver.extraClassPath\u003d:/opt/zeppelin/interpreter/spark/*:::/opt/zeppelin/interpreter/zeppelin-interpreter-shaded-0.9.0.jar:/opt/zeppelin/interpreter/spark/spark-interpreter-0.9.0.jar\nspark.driver.extraJavaOptions\u003d -Dfile.encoding\u003dUTF-8 -Dlog4j.configuration\u003dfile:///opt/zeppelin/conf/log4j.properties -Dlog4j.configurationFile\u003dfile:///opt/zeppelin/conf/log4j2.properties -Dzeppelin.log.file\u003d/logs/zeppelin-interpreter-spark-shared_process--zeppelin.log\nspark.driver.host\u003dzeppelin\nspark.driver.memory\u003d1g\nspark.driver.port\u003d38779\nspark.executor.cores\u003d1\nspark.executor....\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1657636701609_488869126",
+      "id": "paragraph_1657636701609_488869126",
+      "dateCreated": "2022-07-12 14:38:21.609",
+      "dateStarted": "2022-07-25 18:38:27.071",
+      "dateFinished": "2022-07-25 18:38:39.707",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n\nimport org.apache.spark.sql.{SaveMode, SparkSession}\n\n\n\nobject CsvToAvroParquetJson extends App {\n\n  val spark: SparkSession \u003d SparkSession.builder()\n    .master(\"local[1]\")\n    .appName(\"SparkByExample\")\n    .getOrCreate()\n\n  spark.sparkContext.setLogLevel(\"ERROR\")\n\n  //read csv with options\n  val df \u003d spark.read.options(Map(\"inferSchema\"-\u003e\"true\",\"delimiter\"-\u003e\",\",\"header\"-\u003e\"true\"))\n    .text(\"/spark/sql/ecomm_orders.txt\")\n  df.show()\n  df.printSchema()\n\n  //convert to avro\n  df.write.format(\"avro\").mode(SaveMode.Overwrite)\n    .save(\"/tmp/avro/zipcodes.avro\")\n\n\n\n  //convert to parquet\n  df.write.mode(SaveMode.Overwrite).parquet(\"/spark/sql/ecomm_orders.parquet\")\n\n  //convert to json\n  df.write.mode(SaveMode.Overwrite).json(\"/spark/sql/ecomm_orderss.json\")\n}\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 13:07:40.588",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.{SaveMode, SparkSession}\ndefined object CsvToAvroParquetJson\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658754323377_1924889864",
+      "id": "paragraph_1658754323377_1924889864",
+      "dateCreated": "2022-07-25 13:05:23.377",
+      "dateStarted": "2022-07-25 13:07:40.592",
+      "dateFinished": "2022-07-25 13:07:41.371",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Implementing CSV to Avro, Parquet and JSON\n\n\n  val spark: SparkSession \u003d SparkSession.builder()\n    .master(\"local[1]\")\n    .appName(\"Spark CSV to Avro Parquet JSON\")\n    .getOrCreate()\n\n  spark.sparkContext.setLogLevel(\"ERROR\")\n\n  // Reading the csv with options\n  val dataframe \u003d spark.read.options(Map(\"inferSchema\"-\u003e\"true\",\"delimiter\"-\u003e\",\",\"header\"-\u003e\"true\"))\n    .text(\"/spark/sql/ecomm_orders.txt\")\n  dataframe.show()\n  dataframe.printSchema()\n\n  // Converting CSV to Avro\n  dataframe.write.format(\"avro\").mode(SaveMode.Overwrite)\n    .save(\"/spark/sql/ecomm_orders.avro\")\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 12:00:32.745",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "defined object CsvFileToAvroParquetJsonFile\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658749982302_574828320",
+      "id": "paragraph_1658749982302_574828320",
+      "dateCreated": "2022-07-25 11:53:02.302",
+      "dateStarted": "2022-07-25 11:59:45.864",
+      "dateFinished": "2022-07-25 11:59:46.741",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 11:53:01.666",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658749981665_1570278764",
+      "id": "paragraph_1658749981665_1570278764",
+      "dateCreated": "2022-07-25 11:53:01.666",
+      "status": "READY"
+    },
+    {
+      "text": "%spark\nval df2 \u003d spark.read.option(\"lineSep\", \",\").text(path)\ndf2.show()\ndf2.printSchema()\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 13:00:06.970",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|               value|\n+--------------------+\n|     [ {\"id\": \"3001\"|\n| \"eventType\": \"re...|\n| \"subject\": \"ecom...|\n| \"eventTime\": \"20...|\n| \"data\":{ \"custom...|\n| \"address\": \"Ap #...|\n|  \"city\": \"Billings\"|\n|\"postalcode\": \"80...|\n|    \"country\": \"USA\"|\n|\"phone\": \"1-528-8...|\n|\"email\": \"Donec.f...|\n|\"product_name\": \"...|\n|\"order_date\": \"18...|\n|   \"currency\": \"EUR\"|\n| \"order_mode\": \"NEW\"|\n|\"sale_price\": \"32...|\n|\"order_number\": \"...|\n|\"dataVersion\": \"1...|\n| \"eventType\": \"re...|\n| \"subject\": \"ecom...|\n+--------------------+\nonly showing top 20 rows\n\nroot\n |-- value: string (nullable \u003d true)\n\n\u001b[1m\u001b[34mdf2\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [value: string]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d7"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658753958126_197836082",
+      "id": "paragraph_1658753958126_197836082",
+      "dateCreated": "2022-07-25 12:59:18.126",
+      "dateStarted": "2022-07-25 13:00:06.973",
+      "dateFinished": "2022-07-25 13:00:07.275",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 13:00:05.703",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- value: string (nullable \u003d true)\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658753989297_674711428",
+      "id": "paragraph_1658753989297_674711428",
+      "dateCreated": "2022-07-25 12:59:49.297",
+      "dateStarted": "2022-07-25 13:00:00.242",
+      "dateFinished": "2022-07-25 13:00:00.437",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\nval path \u003d \"/spark/sql/ecomm_orders.txt\"\n\nval df1 \u003d spark.read.text(path)\ndf1.show()",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 12:58:35.509",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+\n|               value|\n+--------------------+\n|[ {\"id\": \"3001\", ...|\n|[ {\"id\": \"3002\", ...|\n|[ {\"id\": \"3003\", ...|\n|[ {\"id\": \"3004\", ...|\n|[ {\"id\": \"3005\", ...|\n|[ {\"id\": \"3006\", ...|\n|[ {\"id\": \"3007\", ...|\n|[ {\"id\": \"3008\", ...|\n|[ {\"id\": \"3009\", ...|\n|[ {\"id\": \"3010\", ...|\n+--------------------+\n\n\u001b[1m\u001b[34mpath\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d /spark/sql/ecomm_orders.txt\n\u001b[1m\u001b[34mdf1\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [value: string]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d4"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658752684442_5563521",
+      "id": "paragraph_1658752684442_5563521",
+      "dateCreated": "2022-07-25 12:38:04.442",
+      "dateStarted": "2022-07-25 12:58:35.512",
+      "dateFinished": "2022-07-25 12:58:36.052",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n//read csv with options\n  val df \u003d spark.read.options(Map(\"inferSchema\"-\u003e\"true\",\"delimiter\"-\u003e\",\",\"header\"-\u003e\"false\"))\n    .csv(\"/spark/sql/ecomm_orders.txt\")\n  df.show()\n  df.printSchema()\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 18:42:27.314",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+-------------------+--------------------+--------------------+--------------------+\n|            _c0|                 _c1|                 _c2|                 _c3|                 _c4|                 _c5|                 _c6|                 _c7|                 _c8|                 _c9|                _c10|                _c11|                _c12|                _c13|               _c14|                _c15|                _c16|                _c17|\n+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+-------------------+--------------------+--------------------+--------------------+\n|[ {\"id\": \"3001\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"Ap #...|  \"city\": \"Billings\"|\"postalcode\": \"80...|    \"country\": \"USA\"|\"phone\": \"1-528-8...|\"email\": \"Donec.f...|\"product_name\": \"...|\"order_date\": \"18...|   \"currency\": \"EUR\"|\"order_mode\": \"NEW\"|\"sale_price\": \"32...|\"order_number\": \"...|\"dataVersion\": \"1...|\n|[ {\"id\": \"3002\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"Ap #...|  \"city\": \"Bhilwara\"|\"postalcode\": \"82...|  \"country\": \"India\"|\"phone\": \"+91 095...|\"email\": \"Donec.f...|\"product_name\": \"...|\"order_date\": \"18...|   \"currency\": \"USD\"|\"order_mode\": \"NEW\"|\"sale_price\": \"44...|\"order_number\": \"...|\"dataVersion\": \"1...|\n|[ {\"id\": \"3003\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"3840...|\"city\": \"Milton K...|\"postalcode\": \"C4...|     \"country\": \"UK\"|\"phone\": \"00505 9...|\"email\": \"lorem@i...|\"product_name\": \"...|\"order_date\": \"18...|   \"currency\": \"USD\"|\"order_mode\": \"NEW\"|\"sale_price\": \"64...|\"order_number\": \"...|\"dataVersion\": \"1...|\n|[ {\"id\": \"3004\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"P.O....| 2884 Pharetra. R...|\"city\": \"Harrisburg\"|\"postalcode\": \"65...|    \"country\": \"USA\"|\"phone\": \"1-375-9...|\"email\": \"velit.j...|\"product_name\": \"...|\"order_date\": \"18...|  \"currency\": \"INR\"| \"order_mode\": \"NEW\"|\"sale_price\": \"74...|\"order_number\": \"...|\n|[ {\"id\": \"3005\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"546-...|\"city\": \"Newport ...|\"postalcode\": \"23...|    \"country\": \"USA\"|\"phone\": \"1-853-1...|\"email\": \"hymenae...|\"product_name\": \"...|\"order_date\": \"18...|   \"currency\": \"EUR\"|\"order_mode\": \"NEW\"|\"sale_price\": \"85...|\"order_number\": \"...|\"dataVersion\": \"1...|\n|[ {\"id\": \"3006\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"3687...|  \"city\": \"Itanagar\"|\"postalcode\": \"74...|  \"country\": \"India\"|\"phone\": \"+91 699...|\"email\": \"fringil...|\"product_name\": \"...|\"order_date\": \"18...|   \"currency\": \"EUR\"|\"order_mode\": \"NEW\"|\"sale_price\": \"16...|\"order_number\": \"...|\"dataVersion\": \"1...|\n|[ {\"id\": \"3007\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"P.O....|     5596 Morbi St.\"| \"city\": \"Flin Flon\"|\"postalcode\": \"H5...| \"country\": \"Canada\"|\"phone\": \"1 (879)...|\"email\": \"Etiam.v...|\"product_name\": \"...|\"order_date\": \"18...|  \"currency\": \"USD\"| \"order_mode\": \"NEW\"|\"sale_price\": \"17...|\"order_number\": \"...|\n|[ {\"id\": \"3008\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"P.O....|    3231 Vel Street\"|\"city\": \"Chesapeake\"|\"postalcode\": \"46...|    \"country\": \"USA\"|\"phone\": \"1-488-8...|\"email\": \"ultrice...|\"product_name\": \"...|\"order_date\": \"18...|  \"currency\": \"CAD\"| \"order_mode\": \"NEW\"|\"sale_price\": \"94...|\"order_number\": \"...|\n|[ {\"id\": \"3009\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"P.O....|    5820 Vel Avenue\"| \"city\": \"New Haven\"|\"postalcode\": \"14...|    \"country\": \"USA\"|\"phone\": \"1-117-2...|\"email\": \"egestas...|\"product_name\": \"...|\"order_date\": \"18...|  \"currency\": \"INR\"| \"order_mode\": \"NEW\"|\"sale_price\": \"24...|\"order_number\": \"...|\n|[ {\"id\": \"3010\"| \"eventType\": \"re...| \"subject\": \"ecom...| \"eventTime\": \"20...| \"data\":{ \"custom...| \"address\": \"Ap #...|  \"city\": \"Hamilton\"|\"postalcode\": \"K3...| \"country\": \"Canada\"|\"phone\": \"1 (365)...|\"email\": \"elit@cu...|\"product_name\": \"...|\"order_date\": \"18...|   \"currency\": \"CAD\"|\"order_mode\": \"NEW\"|\"sale_price\": \"17...|\"order_number\": \"...|\"dataVersion\": \"1...|\n+---------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+-------------------+--------------------+--------------------+--------------------+\n\nroot\n |-- _c0: string (nullable \u003d true)\n |-- _c1: string (nullable \u003d true)\n |-- _c2: string (nullable \u003d true)\n |-- _c3: string (nullable \u003d true)\n |-- _c4: string (nullable \u003d true)\n |-- _c5: string (nullable \u003d true)\n |-- _c6: string (nullable \u003d true)\n |-- _c7: string (nullable \u003d true)\n |-- _c8: string (nullable \u003d true)\n |-- _c9: string (nullable \u003d true)\n |-- _c10: string (nullable \u003d true)\n |-- _c11: string (nullable \u003d true)\n |-- _c12: string (nullable \u003d true)\n |-- _c13: string (nullable \u003d true)\n |-- _c14: string (nullable \u003d true)\n |-- _c15: string (nullable \u003d true)\n |-- _c16: string (nullable \u003d true)\n |-- _c17: string (nullable \u003d true)\n\n\u001b[1m\u001b[34mdf\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [_c0: string, _c1: string ... 16 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d6"
+            },
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d7"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658749979930_1182832603",
+      "id": "paragraph_1658749979930_1182832603",
+      "dateCreated": "2022-07-25 11:52:59.930",
+      "dateStarted": "2022-07-25 18:42:27.317",
+      "dateFinished": "2022-07-25 18:42:27.856",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n// Converting CSV to Avro\n df.write.format(\"avro\").save(\"/spark/sql/ecomm_orders.avro\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 12:41:00.162",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "org.apache.spark.sql.AnalysisException: Failed to find data source: avro. Avro is built-in but external data source module since Spark 2.4. Please deploy the application as per the deployment section of \"Apache Avro Data Source Guide\".;\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSource(DataSource.scala:666)\n  at org.apache.spark.sql.execution.datasources.DataSource$.lookupDataSourceV2(DataSource.scala:733)\n  at org.apache.spark.sql.DataFrameWriter.lookupV2Provider(DataFrameWriter.scala:967)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:304)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:288)\n  ... 44 elided\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658752782598_413045428",
+      "id": "paragraph_1658752782598_413045428",
+      "dateCreated": "2022-07-25 12:39:42.598",
+      "dateStarted": "2022-07-25 12:41:00.165",
+      "dateFinished": "2022-07-25 12:41:00.558",
+      "status": "ERROR"
+    },
+    {
+      "text": "%spark\n//\n\nimport org.apache.spark.sql.{SaveMode, SparkSession}\n\nobject CsvToAvroParquetJson extends App {\n\n  val spark: SparkSession \u003d SparkSession.builder()\n    .master(\"local[1]\")\n    .appName(\"SparkByExample\")\n    .getOrCreate()\n\n  spark.sparkContext.setLogLevel(\"ERROR\")\n\n //read csv with options\n  val df \u003d spark.read.options(Map(\"inferSchema\"-\u003e\"true\",\"delimiter\"-\u003e\",\",\"header\"-\u003e\"true\"))\n    .csv(\"src/main/resources/ecomm_orders.csv\")\n  df.show()\n  df.printSchema()\n\n  //convert to avro\n  df.write.format(\"avro\").mode(SaveMode.Overwrite)\n    .save(\"/tmp/avro/zipcodes.avro\")\n\n\n  //convert to parquet\n  df.write.mode(SaveMode.Overwrite).parquet(\"/tmp/parquet/zipcodes.parquet\")\n\n  //convert to json\n  df.write.mode(SaveMode.Overwrite).json(\"/tmp/json/zipcodes.json\")\n}\n\n\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 18:41:46.785",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658752782065_721658463",
+      "id": "paragraph_1658752782065_721658463",
+      "dateCreated": "2022-07-25 12:39:42.065",
+      "status": "READY"
+    },
+    {
+      "text": "%spark\n dataframe.write.format(\"avro\").mode(SaveMode.Overwrite)\n    .save(\"/tmp/avro/zipcodes.avro\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 12:40:44.153",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658749978991_1486983300",
+      "id": "paragraph_1658749978991_1486983300",
+      "dateCreated": "2022-07-25 11:52:58.991",
+      "status": "READY"
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 18:39:59.706",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658774399706_32106883",
+      "id": "paragraph_1658774399706_32106883",
+      "dateCreated": "2022-07-25 18:39:59.706",
+      "status": "READY"
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-25 11:52:42.656",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1658749962656_614244570",
+      "id": "paragraph_1658749962656_614244570",
+      "dateCreated": "2022-07-25 11:52:42.656",
+      "status": "READY"
+    },
+    {
+      "text": "%spark\n// shared configuration\n// note: this password is for Docker mysql only - it isn\u0027t smart to add passwords to code that is version controlled!\nval jdbcDriver \u003d spark.conf.get(\"spark.jdbc.driver.class\", \"org.mariadb.jdbc.Driver\")\nval dbHost     \u003d spark.conf.get(\"spark.jdbc.host\",\"mysql\")\nval dbPort     \u003d spark.conf.get(\"spark.jdbc.port\", \"3306\")\nval defaultDb  \u003d spark.conf.get(\"spark.jdbc.default.db\", \"default\")\nval dbTable    \u003d spark.conf.get(\"spark.jdbc.table\", \"customers\")\nval dbUser     \u003d spark.conf.get(\"spark.jdbc.user\", \"dataeng\")\nval dbPass     \u003d spark.conf.get(\"spark.jdbc.password\", \"dataengineering_user\")\n\nval connectionUrl \u003d s\"jdbc:mysql://$dbHost:$dbPort/$defaultDb\"\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:37:10.852",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mjdbcDriver\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d org.mariadb.jdbc.Driver\n\u001b[1m\u001b[34mdbHost\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d mysql\n\u001b[1m\u001b[34mdbPort\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d 3306\n\u001b[1m\u001b[34mdefaultDb\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d default\n\u001b[1m\u001b[34mdbTable\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d customers\n\u001b[1m\u001b[34mdbUser\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d dataeng\n\u001b[1m\u001b[34mdbPass\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d dataengineering_user\n\u001b[1m\u001b[34mconnectionUrl\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d jdbc:mysql://mysql:3306/default\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614213590359_2024560442",
+      "id": "paragraph_1614213590359_2024560442",
+      "dateCreated": "2021-02-25 00:39:50.359",
+      "dateStarted": "2022-07-12 14:37:10.869",
+      "dateFinished": "2022-07-12 14:37:24.463",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Reading Data From JDBC Connections",
+      "text": "%spark\nval customers \u003d spark.read\n  .format(\"jdbc\")\n  .option(\"url\", connectionUrl)\n  .option(\"driver\", jdbcDriver)\n  .option(\"dbtable\", dbTable)\n  .option(\"user\", dbUser)\n  .option(\"password\", dbPass)\n  .load()\n\ncustomers.printSchema\ncustomers.createOrReplaceTempView(\"customers\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:37:49.726",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- id: string (nullable \u003d true)\n |-- created: timestamp (nullable \u003d true)\n |-- updated: timestamp (nullable \u003d true)\n |-- first_name: string (nullable \u003d true)\n |-- last_name: string (nullable \u003d true)\n |-- email: string (nullable \u003d true)\n\n\u001b[1m\u001b[34mcustomers\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [id: string, created: timestamp ... 4 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614184981488_759162661",
+      "id": "paragraph_1614184981488_759162661",
+      "dateCreated": "2021-02-24 16:43:01.488",
+      "dateStarted": "2022-07-12 14:37:49.731",
+      "dateFinished": "2022-07-12 14:37:50.947",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Write New Customers to MySQL",
+      "text": "%spark\nimport org.apache.spark.sql._\nimport java.sql.Timestamp\nimport java.time._\n\n// spark: SparkSession (from spark-shell)\nassert(spark.isInstanceOf[SparkSession])\n\ndef ts(timeStr: String) \u003d Timestamp.valueOf(timeStr)\ndef time \u003d Timestamp.from(Instant.now())\n\n// create some new customers\nval records \u003d Seq(\n  Row(\"4\",ts(\"2021-02-21 21:00:00\"),time,\"Penny\",\"Haines\",\"penny@coffeeco.com\"),\n  Row(\"5\",ts(\"2021-02-21 22:00:00\"),time,\"Cloud\",\"Fast\",\"cloud.fast@acme.com\"),\n  Row(\"6\",ts(\"2021-02-21 23:00:00\"),time,\"Marshal\",\"Haines\",\"paws@coffeeco.com\")\n)\n\n// generate a new DataFrame using the new records and the schema from df (connect-jdbc.scala)\nval newCustomers \u003d spark.createDataFrame(\n    spark.sparkContext.parallelize(records),\n    customers.schema\n)\n\n// note: doesn\u0027t deduplicate if set to `mode(\"ignore\")`. It will just do nothing.\nnewCustomers\n  .write\n  .format(\"jdbc\")\n  .mode(\"append\") // change to ignore to stop adding duplicates\n  .options(Map[String, String](\n    \"url\" -\u003e connectionUrl,\n    \"driver\" -\u003e jdbcDriver,\n    \"dbtable\" -\u003e dbTable,\n    \"user\" -\u003e dbUser,\n    \"password\" -\u003e dbPass\n  )\n).save()\n",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:40:18.878",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql._\nimport java.sql.Timestamp\nimport java.time._\n\u001b[1m\u001b[34mts\u001b[0m: \u001b[1m\u001b[32m(timeStr: String)java.sql.Timestamp\u001b[0m\n\u001b[1m\u001b[34mtime\u001b[0m: \u001b[1m\u001b[32mjava.sql.Timestamp\u001b[0m\n\u001b[1m\u001b[34mrecords\u001b[0m: \u001b[1m\u001b[32mSeq[org.apache.spark.sql.Row]\u001b[0m \u003d List([4,2021-02-21 21:00:00.0,2022-07-12 14:40:19.494,Penny,Haines,penny@coffeeco.com], [5,2021-02-21 22:00:00.0,2022-07-12 14:40:19.494,Cloud,Fast,cloud.fast@acme.com], [6,2021-02-21 23:00:00.0,2022-07-12 14:40:19.494,Marshal,Haines,paws@coffeeco.com])\n\u001b[1m\u001b[34mnewCustomers\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [id: string, created: timestamp ... 4 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d0"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614213413596_418016277",
+      "id": "paragraph_1614213413596_418016277",
+      "dateCreated": "2021-02-25 00:36:53.596",
+      "dateStarted": "2022-07-12 14:40:18.882",
+      "dateFinished": "2022-07-12 14:40:22.191",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sql\nselect * from customers",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:40:27.890",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "created": "string",
+                      "updated": "string",
+                      "first_name": "string",
+                      "last_name": "string",
+                      "email": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "id\tcreated\tupdated\tfirst_name\tlast_name\temail\n1\t2022-07-12 14:34:29.0\t2022-07-12 14:34:29.0\tScott\tHaines\tscott@coffeeco.com\n2\t2022-07-12 14:34:29.0\t2022-07-12 14:34:29.0\tJohn\tHamm\tjohn.hamm@acme.com\n3\t2022-07-12 14:34:29.0\t2022-07-12 14:34:29.0\tMilo\tHaines\tmhaines@coffeeco.com\n6\t2021-02-21 23:00:00.0\t2022-07-12 14:40:19.0\tMarshal\tHaines\tpaws@coffeeco.com\n4\t2021-02-21 21:00:00.0\t2022-07-12 14:40:19.0\tPenny\tHaines\tpenny@coffeeco.com\n5\t2021-02-21 22:00:00.0\t2022-07-12 14:40:19.0\tCloud\tFast\tcloud.fast@acme.com\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d1"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614213752264_1780383982",
+      "id": "paragraph_1614213752264_1780383982",
+      "dateCreated": "2021-02-25 00:42:32.264",
+      "dateStarted": "2022-07-12 14:40:27.893",
+      "dateFinished": "2022-07-12 14:40:28.169",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Get all the distinct emails",
+      "text": "%sql\nselect distinct(email) as email from customers",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:40:40.063",
+      "progress": 47,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "email": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "email\nscott@coffeeco.com\npenny@coffeeco.com\npaws@coffeeco.com\nmhaines@coffeeco.com\ncloud.fast@acme.com\njohn.hamm@acme.com\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d2"
+            },
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d3"
+            },
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d4"
+            },
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d5"
+            },
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d6"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1615165203249_337912082",
+      "id": "paragraph_1615165203249_337912082",
+      "dateCreated": "2021-03-08 01:00:03.249",
+      "dateStarted": "2022-07-12 14:40:40.067",
+      "dateFinished": "2022-07-12 14:40:41.566",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Select Distinct and Sort",
+      "text": "%sql\nSELECT id, min(created) as created, max(updated) as updated, email FROM customers\nGROUP BY id, email\nORDER BY id ASC",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:40:45.472",
+      "progress": 76,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "created": "string",
+                      "updated": "string",
+                      "email": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "id\tcreated\tupdated\temail\n1\t2022-07-12 14:34:29.0\t2022-07-12 14:34:29.0\tscott@coffeeco.com\n2\t2022-07-12 14:34:29.0\t2022-07-12 14:34:29.0\tjohn.hamm@acme.com\n3\t2022-07-12 14:34:29.0\t2022-07-12 14:34:29.0\tmhaines@coffeeco.com\n4\t2021-02-21 21:00:00.0\t2022-07-12 14:40:19.0\tpenny@coffeeco.com\n5\t2021-02-21 22:00:00.0\t2022-07-12 14:40:19.0\tcloud.fast@acme.com\n6\t2021-02-21 23:00:00.0\t2022-07-12 14:40:19.0\tpaws@coffeeco.com\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d7"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1615165041437_790866939",
+      "id": "paragraph_1615165041437_790866939",
+      "dateCreated": "2021-03-08 00:57:21.437",
+      "dateStarted": "2022-07-12 14:40:45.476",
+      "dateFinished": "2022-07-12 14:40:46.558",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n# Fixing the Customers Table\n\n~~~sql\nCREATE TABLE IF NOT EXISTS `customers` (\n  `id` text,\n  `created` timestamp NULL DEFAULT NULL,\n  `updated` timestamp NULL DEFAULT NULL,\n  `first_name` text,\n  `last_name` text,\n  `email` text\n);\n~~~\n\nThe initial customers table we whipped up in Exercise 5-1 is a little naive. We can do *better*.\n\n## Creating a Better Customers Table\nThe `bettercustomers` table has to be created first inside the database because spark doesn\u0027t recognize `AUTO_INCREMENT` in the table definition.\n~~~sql\nCREATE TABLE IF NOT EXISTS `bettercustomers` (\n  `id` mediumint NOT NULL AUTO_INCREMENT COMMENT \u0027customer automatic id\u0027,\n  `created` timestamp DEFAULT CURRENT_TIMESTAMP COMMENT \u0027customer join date\u0027,\n  `updated` timestamp DEFAULT CURRENT_TIMESTAMP COMMENT \u0027last record update\u0027,\n  `first_name` varchar(100) NOT NULL,\n  `last_name` varchar(100) NOT NULL,\n  `email` varchar(255) NOT NULL UNIQUE,\n  PRIMARY KEY (`id`)\n);\n~~~\n\n### Inserting Customer Records Into BetterCustomers Table\n~~~sql\nINSERT INTO bettercustomers (created, first_name, last_name, email)\nVALUES\n(\"2021-02-16 00:16:06\", \"Scott\", \"Haines\", \"scott@coffeeco.com\"),\n(\"2021-02-16 00:16:06\", \"John\", \"Hamm\", \"john.hamm@acme.com\"),\n(\"2021-02-16 00:16:06\", \"Milo\", \"Haines\", \"mhaines@coffeeco.com\"),\n(\"2021-02-21 21:00:00\", \"Penny\", \"Haines\", \"penny@coffeeco.com\"),\n(\"2021-02-21 22:00:00\", \"Cloud\", \"Fast\", \"cloud.fast@acme.com\"),\n(\"2021-02-21 23:00:00\", \"Marshal\", \"Haines\", \"paws@coffeeco.com\"),\n(\"2021-02-24 09:00:00\", \"Willow\", \"Haines\", \"willow@coffeeco.com\"),\n(\"2021-02-24 09:00:00\", \"Clover\", \"Haines\", \"pup@coffeeco.com\");\n~~~",
+      "user": "anonymous",
+      "dateUpdated": "2021-03-05 22:39:18.714",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eFixing the Customers Table\u003c/h1\u003e\n\u003cpre\u003e\u003ccode class\u003d\"language-sql\"\u003eCREATE TABLE IF NOT EXISTS `customers` (\n  `id` text,\n  `created` timestamp NULL DEFAULT NULL,\n  `updated` timestamp NULL DEFAULT NULL,\n  `first_name` text,\n  `last_name` text,\n  `email` text\n);\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eThe initial customers table we whipped up in Exercise 5-1 is a little naive. We can do \u003cem\u003ebetter\u003c/em\u003e.\u003c/p\u003e\n\u003ch2\u003eCreating a Better Customers Table\u003c/h2\u003e\n\u003cp\u003eThe \u003ccode\u003ebettercustomers\u003c/code\u003e table has to be created first inside the database because spark doesn\u0026rsquo;t recognize \u003ccode\u003eAUTO_INCREMENT\u003c/code\u003e in the table definition.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class\u003d\"language-sql\"\u003eCREATE TABLE IF NOT EXISTS `bettercustomers` (\n  `id` mediumint NOT NULL AUTO_INCREMENT COMMENT \u0027customer automatic id\u0027,\n  `created` timestamp DEFAULT CURRENT_TIMESTAMP COMMENT \u0027customer join date\u0027,\n  `updated` timestamp DEFAULT CURRENT_TIMESTAMP COMMENT \u0027last record update\u0027,\n  `first_name` varchar(100) NOT NULL,\n  `last_name` varchar(100) NOT NULL,\n  `email` varchar(255) NOT NULL UNIQUE,\n  PRIMARY KEY (`id`)\n);\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eInserting Customer Records Into BetterCustomers Table\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class\u003d\"language-sql\"\u003eINSERT INTO bettercustomers (created, first_name, last_name, email)\nVALUES\n(\u0026quot;2021-02-16 00:16:06\u0026quot;, \u0026quot;Scott\u0026quot;, \u0026quot;Haines\u0026quot;, \u0026quot;scott@coffeeco.com\u0026quot;),\n(\u0026quot;2021-02-16 00:16:06\u0026quot;, \u0026quot;John\u0026quot;, \u0026quot;Hamm\u0026quot;, \u0026quot;john.hamm@acme.com\u0026quot;),\n(\u0026quot;2021-02-16 00:16:06\u0026quot;, \u0026quot;Milo\u0026quot;, \u0026quot;Haines\u0026quot;, \u0026quot;mhaines@coffeeco.com\u0026quot;),\n(\u0026quot;2021-02-21 21:00:00\u0026quot;, \u0026quot;Penny\u0026quot;, \u0026quot;Haines\u0026quot;, \u0026quot;penny@coffeeco.com\u0026quot;),\n(\u0026quot;2021-02-21 22:00:00\u0026quot;, \u0026quot;Cloud\u0026quot;, \u0026quot;Fast\u0026quot;, \u0026quot;cloud.fast@acme.com\u0026quot;),\n(\u0026quot;2021-02-21 23:00:00\u0026quot;, \u0026quot;Marshal\u0026quot;, \u0026quot;Haines\u0026quot;, \u0026quot;paws@coffeeco.com\u0026quot;),\n(\u0026quot;2021-02-24 09:00:00\u0026quot;, \u0026quot;Willow\u0026quot;, \u0026quot;Haines\u0026quot;, \u0026quot;willow@coffeeco.com\u0026quot;),\n(\u0026quot;2021-02-24 09:00:00\u0026quot;, \u0026quot;Clover\u0026quot;, \u0026quot;Haines\u0026quot;, \u0026quot;pup@coffeeco.com\u0026quot;);\n\u003c/code\u003e\u003c/pre\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614213858686_160867183",
+      "id": "paragraph_1614213858686_160867183",
+      "dateCreated": "2021-02-25 00:44:18.686",
+      "dateStarted": "2021-03-05 22:39:18.716",
+      "dateFinished": "2021-03-05 22:39:18.731",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Load up our Better Customers",
+      "text": "%spark\nval betterCustomers \u003d spark.read\n  .format(\"jdbc\")\n  .option(\"url\", connectionUrl)\n  .option(\"driver\", jdbcDriver)\n  .option(\"dbtable\", \"bettercustomers\")\n  .option(\"user\", dbUser)\n  .option(\"password\", dbPass)\n  .load()\n\nbetterCustomers.printSchema\n\nbetterCustomers.show(false)\n\nbetterCustomers.createOrReplaceTempView(\"bettercustomers\")",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:42:11.560",
+      "progress": 100,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- id: integer (nullable \u003d true)\n |-- created: timestamp (nullable \u003d true)\n |-- updated: timestamp (nullable \u003d true)\n |-- first_name: string (nullable \u003d true)\n |-- last_name: string (nullable \u003d true)\n |-- email: string (nullable \u003d true)\n\n+---+-------------------+-------------------+----------+---------+--------------------+\n|id |created            |updated            |first_name|last_name|email               |\n+---+-------------------+-------------------+----------+---------+--------------------+\n|1  |2021-02-16 00:16:06|2022-07-12 14:42:05|Scott     |Haines   |scott@coffeeco.com  |\n|2  |2021-02-16 00:16:06|2022-07-12 14:42:05|John      |Hamm     |john.hamm@acme.com  |\n|3  |2021-02-16 00:16:06|2022-07-12 14:42:05|Milo      |Haines   |mhaines@coffeeco.com|\n|4  |2021-02-21 21:00:00|2022-07-12 14:42:05|Penny     |Haines   |penny@coffeeco.com  |\n|5  |2021-02-21 22:00:00|2022-07-12 14:42:05|Cloud     |Fast     |cloud.fast@acme.com |\n|6  |2021-02-21 23:00:00|2022-07-12 14:42:05|Marshal   |Haines   |paws@coffeeco.com   |\n|7  |2021-02-24 09:00:00|2022-07-12 14:42:05|Willow    |Haines   |willow@coffeeco.com |\n|8  |2021-02-24 09:00:00|2022-07-12 14:42:05|Clover    |Haines   |pup@coffeeco.com    |\n+---+-------------------+-------------------+----------+---------+--------------------+\n\n\u001b[1m\u001b[34mbetterCustomers\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [id: int, created: timestamp ... 4 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d8"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614185019787_1496963524",
+      "id": "paragraph_1614185019787_1496963524",
+      "dateCreated": "2021-02-24 16:43:39.787",
+      "dateStarted": "2022-07-12 14:42:11.563",
+      "dateFinished": "2022-07-12 14:42:12.083",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Getting the Schema",
+      "text": "%spark\nbetterCustomers.schema",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:42:19.191",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mres7\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.types.StructType\u001b[0m \u003d StructType(StructField(id,IntegerType,true), StructField(created,TimestampType,true), StructField(updated,TimestampType,true), StructField(first_name,StringType,true), StructField(last_name,StringType,true), StructField(email,StringType,true))\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614186266127_1397870333",
+      "id": "paragraph_1614186266127_1397870333",
+      "dateCreated": "2021-02-24 17:04:26.127",
+      "dateStarted": "2022-07-12 14:42:19.194",
+      "dateFinished": "2022-07-12 14:42:19.377",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Write Better Customer Records with Minimal Schema",
+      "text": "%spark\n\nimport org.apache.spark.sql.types._\nimport org.apache.spark.sql._\n\nval simpleFieldNames \u003d Set(\"first_name\", \"last_name\", \"email\")\nval simpleSchema \u003d StructType(\n    betterCustomers.schema.fields.filter(sf \u003d\u003e simpleFieldNames.contains(sf.name))\n)\n\nval saveMode \u003d \"overwrite\" // change this to append to write through. The email constraint means this can only be run once - cause otherwise we\u0027d get an error.\n\n// create simplified Rows!\nval rows \u003d spark.createDataFrame(\n  spark.sparkContext.parallelize(\n      Seq(\n          Row(\"Nanna\",\"Haines\",\"nhugs@coffeeco.com\"),\n          Row(\"The\",\"Rock\",\"djohnson@coffeeco.com\")\n      )\n  ),\n  simpleSchema\n)\n\nrows\n.write\n.format(\"jdbc\")\n.mode(saveMode)\n.options(Map[String, String](\n  \"url\" -\u003e connectionUrl,\n  \"driver\" -\u003e jdbcDriver,\n  \"dbtable\" -\u003e \"bettercustomers\",\n  \"user\" -\u003e dbUser,\n  \"password\" -\u003e dbPass,\n  \"truncate\" -\u003e \"true\"\n))\n.save()",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:44:22.813",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 167.798,
+              "optionOpen": false
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true,
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql.types._\nimport org.apache.spark.sql._\n\u001b[1m\u001b[34msimpleFieldNames\u001b[0m: \u001b[1m\u001b[32mscala.collection.immutable.Set[String]\u001b[0m \u003d Set(first_name, last_name, email)\n\u001b[1m\u001b[34msimpleSchema\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.types.StructType\u001b[0m \u003d StructType(StructField(first_name,StringType,true), StructField(last_name,StringType,true), StructField(email,StringType,true))\n\u001b[1m\u001b[34msaveMode\u001b[0m: \u001b[1m\u001b[32mString\u001b[0m \u003d overwrite\n\u001b[1m\u001b[34mrows\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [first_name: string, last_name: string ... 1 more field]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d9"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614224798281_1065230385",
+      "id": "paragraph_1614224798281_1065230385",
+      "dateCreated": "2021-02-25 03:46:38.282",
+      "dateStarted": "2022-07-12 14:44:22.817",
+      "dateFinished": "2022-07-12 14:44:23.449",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%md\n## Note\nIt is worth pointing out that if you use `mode(\"overwrite\")` in the **Write Customer Records without Supplying Automatic Fields** example above, then the Table schema will actually be rewritten which isn\u0027t certainly not what we want.\n\n### Why is that? \nGiven that Spark uses the DataFrame schema to define the format of the table, when we call `write.mode(\"overwrite\")...` we will actually be doing the following.\n1. First Spark will Drop the table (if it already exists)\n2. Second Spark will use the `rows.schema` to define the new create table syntax\n3. Lastly, Spark will write the rows into the database\n\nThis would change the table schema, and that is bad for business.\n\n### If the table is first `truncated` then it will preserve the original schema defined by you when you created the database table.\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-03-08 17:26:24.747",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003eNote\u003c/h2\u003e\n\u003cp\u003eIt is worth pointing out that if you use \u003ccode\u003emode(\u0026quot;overwrite\u0026quot;)\u003c/code\u003e in the \u003cstrong\u003eWrite Customer Records without Supplying Automatic Fields\u003c/strong\u003e example above, then the Table schema will actually be rewritten which isn\u0026rsquo;t certainly not what we want.\u003c/p\u003e\n\u003ch3\u003eWhy is that?\u003c/h3\u003e\n\u003cp\u003eGiven that Spark uses the DataFrame schema to define the format of the table, when we call \u003ccode\u003ewrite.mode(\u0026quot;overwrite\u0026quot;)...\u003c/code\u003e we will actually be doing the following.\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eFirst Spark will Drop the table (if it already exists)\u003c/li\u003e\n\u003cli\u003eSecond Spark will use the \u003ccode\u003erows.schema\u003c/code\u003e to define the new create table syntax\u003c/li\u003e\n\u003cli\u003eLastly, Spark will write the rows into the database\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eThis would change the table schema, and that is bad for business.\u003c/p\u003e\n\u003ch3\u003eIf the table is first \u003ccode\u003etruncated\u003c/code\u003e then it will preserve the original schema defined by you when you created the database table.\u003c/h3\u003e\n\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614223864606_1489564927",
+      "id": "paragraph_1614223864606_1489564927",
+      "dateCreated": "2021-02-25 03:31:04.606",
+      "dateStarted": "2021-03-08 17:26:24.747",
+      "dateFinished": "2021-03-08 17:26:24.763",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Safe Overwrite of the bettercustomers Table",
+      "text": "%spark\n\n// use interpreted Spark SQL to generate a DataFrame from our bettercustomers table\nval stored \u003d spark.sql(\"select * from bettercustomers\")\nstored.cache // will persist the dataframe - but there is a catch, spark needs to pass over the data twice to cache it, and we can use the count or head trick to do just that\nstored.count // kicks off the cache\n\nstored\n  .write\n  .mode(\"overwrite\")\n  .format(\"jdbc\")\n  .option(\"url\", connectionUrl)\n  .option(\"driver\", jdbcDriver)\n  .option(\"dbtable\", \"bettercustomers\")\n  .option(\"user\", dbUser)\n  .option(\"password\", dbPass)\n  .option(\"truncate\", true)\n  .save()\n\n// we no longer need to store the cached backup\nstored.unpersist",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:44:51.266",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[1m\u001b[34mstored\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [id: int, created: timestamp ... 4 more fields]\n\u001b[1m\u001b[34mres9\u001b[0m: \u001b[1m\u001b[32mstored.type\u001b[0m \u003d [id: int, created: timestamp ... 4 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d10"
+            },
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d11"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614981430657_1900932859",
+      "id": "paragraph_1614981430657_1900932859",
+      "dateCreated": "2021-03-05 21:57:10.657",
+      "dateStarted": "2022-07-12 14:44:51.269",
+      "dateFinished": "2022-07-12 14:44:51.952",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sql\nselect * from bettercustomers;",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:45:06.482",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "id": "string",
+                      "created": "string",
+                      "updated": "string",
+                      "first_name": "string",
+                      "last_name": "string",
+                      "email": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "id\tcreated\tupdated\tfirst_name\tlast_name\temail\n1\t2022-07-12 14:44:23.0\t2022-07-12 14:44:23.0\tNanna\tHaines\tnhugs@coffeeco.com\n2\t2022-07-12 14:44:23.0\t2022-07-12 14:44:23.0\tThe\tRock\tdjohnson@coffeeco.com\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d13"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614222679551_1672528284",
+      "id": "paragraph_1614222679551_1672528284",
+      "dateCreated": "2021-02-25 03:11:19.551",
+      "dateStarted": "2022-07-12 14:45:06.484",
+      "dateFinished": "2022-07-12 14:45:06.534",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sql\n/*EXPLAIN*/ DESCRIBE EXTENDED bettercustomers",
+      "user": "anonymous",
+      "dateUpdated": "2022-07-12 14:45:18.546",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "col_name": "string",
+                      "data_type": "string",
+                      "comment": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "col_name\tdata_type\tcomment\nid\tint\tnull\ncreated\ttimestamp\tnull\nupdated\ttimestamp\tnull\nfirst_name\tstring\tnull\nlast_name\tstring\tnull\nemail\tstring\tnull\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614186078742_145044323",
+      "id": "paragraph_1614186078742_145044323",
+      "dateCreated": "2021-02-24 17:01:18.742",
+      "dateStarted": "2022-07-12 14:45:18.549",
+      "dateFinished": "2022-07-12 14:45:18.620",
+      "status": "FINISHED"
+    },
+    {
+      "title": "Get the Table Comments from MySQL Information Schema",
+      "text": "%spark\nval schema \u003d spark\n.read\n.format(\"jdbc\")\n.options(Map[String, String](\n    \"url\" -\u003e connectionUrl,\n    \"driver\" -\u003e jdbcDriver,\n    \"query\" -\u003e \n\"\"\"\nselect column_name, data_type, is_nullable, column_comment from information_schema.`columns` \nwhere table_name \u003d \u0027bettercustomers\u0027 \nand table_schema \u003d \u0027default\u0027\n\"\"\",\n    \"user\" -\u003e dbUser,\n    \"password\" -\u003e dbPass\n  )\n)\n.load()\n.toDF(\"name\", \"type\", \"nullable\", \"comment\")\n\nschema\n  .select(\"name\", \"comment\")\n  .where(col(\"comment\").isNotNull)\n  .where(col(\"comment\").notEqual(\"\"))\n  .show(false)\n\n// can turn this into a map and apply it while iterating over the betterCustomers schema.fields -\u003e then we won\u0027t loose the metadata\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-03-05 22:17:51.684",
+      "progress": 0,
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+---------------------+\n|name   |comment              |\n+-------+---------------------+\n|id     |customer automatic id|\n|created|customer join date   |\n|updated|last record update   |\n+-------+---------------------+\n\n\u001b[1m\u001b[34mschema\u001b[0m: \u001b[1m\u001b[32morg.apache.spark.sql.DataFrame\u001b[0m \u003d [name: string, type: string ... 2 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            {
+              "jobUrl": "http://zeppelin:4040/jobs/job?id\u003d18"
+            }
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614186138107_513561362",
+      "id": "paragraph_1614186138107_513561362",
+      "dateCreated": "2021-02-24 17:02:18.107",
+      "dateStarted": "2021-03-05 22:17:51.699",
+      "dateFinished": "2021-03-05 22:17:53.055",
+      "status": "FINISHED"
+    },
+    {
+      "text": "%sql\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-03-05 22:18:26.772",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1614982706772_1024014974",
+      "id": "paragraph_1614982706772_1024014974",
+      "dateCreated": "2021-03-05 22:18:26.772",
+      "status": "READY"
+    }
+  ],
+  "name": "5-2_MySQLAndSpark",
+  "id": "2G1SGWZBW",
+  "defaultInterpreterGroup": "spark",
+  "version": "0.9.0-preview2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
