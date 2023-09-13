@@ -1,5 +1,0 @@
-folgers, 10
-yuban, 10
-nespresso, 10
-ritual, 4
-four barrel, 5

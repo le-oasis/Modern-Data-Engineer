@@ -8,16 +8,16 @@ function sparkConf() {
   echo "applying spark.conf"
 }
 
-function sparkExists() {
-  if [ -z "$SPARK_HOME" ]; then
-    echo "Missing SPARK_HOME environment variable."
-    echo "1. Ensure you have followed the installation instructions for Spark from Chapter 2."
-    echo "2. Add SPARK_HOME to your .zshrc or .bashrc, then use `source ~/.zshrc` for example to refresh your session"
-    exit 1
-  else
-    echo "SPARK_HOME is set. location=${SPARK_HOME}"
-  fi
-}
+# function sparkExists() {
+#   if [ -z "$SPARK_HOME" ]; then
+#     echo "Missing SPARK_HOME environment variable."
+#     echo "1. Ensure you have followed the installation instructions for Spark from Chapter 2."
+#     echo "2. Add SPARK_HOME to your .zshrc or .bashrc, then use `source ~/.zshrc` for example to refresh your session"
+#     exit 1
+#   else
+#     echo "SPARK_HOME is set. location=${SPARK_HOME}"
+#   fi
+# }
 
 function createNetwork() {
   cmd="docker network ls | grep ${DOCKER_NETWORK_NAME}"
@@ -34,8 +34,9 @@ function start() {
   # there is an expectation that $SPARK_HOME and $JAVA_HOME are both available to the session
   # sparkExists
   createNetwork
-  docker-compose -f ${DOCKER_COMPOSE_FILE} up --build -d --remove-orphans jupyter
+  docker-compose -f ${DOCKER_COMPOSE_FILE} up --build -d --remove-orphans jupyter zepplin
   echo "Jupyter will be running on http://127.0.0.1:8888"
+  echo "Zepplin will be running on http://127.0.0.1:8088"
 }
 
 function stop() {
