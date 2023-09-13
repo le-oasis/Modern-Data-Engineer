@@ -4,6 +4,7 @@
       "text": "%md\n## Data Inception: Using Spark to help Spark\nIn this following notebook, we will learn to use Spark to help us work more efficiently.\n",
       "user": "anonymous",
       "dateUpdated": "2021-01-31 19:52:44.840",
+      "progress": 0,
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -46,7 +47,8 @@
       "title": "Read as CSV",
       "text": "%spark\n\n// load the same file from the IntroToSparkOnZeppelin \nval coffees \u003d spark.read.csv(\"file:///learn/raw-coffee.txt\").toDF(\"name\",\"roast\")\ncoffees.show()",
       "user": "anonymous",
-      "dateUpdated": "2021-01-31 19:52:44.964",
+      "dateUpdated": "2023-09-13 08:19:09.540",
+      "progress": 100,
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -96,9 +98,27 @@
       "jobName": "paragraph_1610923180042_1100920629",
       "id": "paragraph_1610923180042_1100920629",
       "dateCreated": "2021-01-17 22:39:40.043",
-      "dateStarted": "2021-01-31 19:52:44.976",
-      "dateFinished": "2021-01-31 19:52:50.447",
+      "dateStarted": "2023-09-13 08:19:09.561",
+      "dateFinished": "2023-09-13 08:19:13.430",
       "status": "FINISHED"
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2023-09-13 08:19:09.556",
+      "progress": 0,
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1694593149556_11507232",
+      "id": "paragraph_1694593149556_11507232",
+      "dateCreated": "2023-09-13 08:19:09.556",
+      "status": "READY"
     }
   ],
   "name": "3-2_LetSparkWorkForYou",
@@ -111,7 +131,5 @@
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
-  "info": {
-    "isRunning": false
-  }
+  "info": {}
 }
