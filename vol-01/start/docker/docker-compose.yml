@@ -31,8 +31,7 @@ services:
 
 # Jupyter Notebook - PySpark Enabled
   jupyter:
-        build:
-            context: ./lakehouse/jupyter
+        image: jupyter/pyspark-notebook:spark-3.2.0
         hostname: myjupyter
         container_name: jupyter
         networks:
@@ -41,7 +40,7 @@ services:
           - "8888:8888"
         volumes:
 
-          - ${PWD}/lakehouse/jupyter/notebooks:/home/jovyan/work/notebooks/
+          - ${PWD}/lakehouse/jupyter-notebooks:/home/jovyan/work/notebooks/
           - ${PWD}/lakehouse/spark/resources/data:/home/jovyan/work/data/
           - ${PWD}/lakehouse/spark/resources/jars:/home/jovyan/work/jars/
           - ${PWD}/lakehouse/spark/conf:/usr/local/spark/conf
