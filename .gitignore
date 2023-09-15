@@ -257,6 +257,7 @@ docker/ch-03/start/docker/data/mysqldir
 
 # This will tell Git to ignore the mysqldir folder in the current directory and its subdirectories,
 vol-01/start/docker/data/mysqldir/*
+vol-02/start/docker/data/mysqldir/*
 
 #Ignore the ipynb checkpoints
 *.ipynb_checkpoints
