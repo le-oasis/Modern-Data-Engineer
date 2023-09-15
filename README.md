@@ -65,14 +65,9 @@ start -> docker -> lakehouse
 - For ease of use, before starting services, please pull the required docker images first.
 - Run the following commands in order to pull the required docker images.
 
-~~~
-docker pull mysql:8.0.23
-~~~
+
 ~~~
 docker pull apache/zeppelin:0.9.0
-~~~
-~~~
-docker pull postgres:9.5.3
 ~~~
 ~~~
 docker pull jupyter/scipy-notebook
