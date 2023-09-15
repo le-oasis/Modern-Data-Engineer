@@ -176,7 +176,7 @@ Bye
 To start the PostgreSQL container, run the following command from the ./vol-02/start/docker directory:
 
 ```
-docker exec -it postgres psql -U oasis -d oasiscorp
+docker exec -it postgres_container psql -U oasis -d oasiscorp
 ```
 
 Great! You have successfully started the PostgreSQL container.
@@ -233,7 +233,7 @@ Go to http://localhost:8888 to see the jupyter lab homepage.
 * The URL with the token can be taken from container logs using:
  
 ```
-docker logs $(docker ps -q --filter "ancestor=docker-jupyter") 2>&1 | grep 'http://127.0.0.1' | tail -1
+docker logs $(docker ps -q --filter "ancestor=jupyter/pyspark-notebook:spark-3.2.0") 2>&1 | grep 'http://127.0.0.1' | tail -1
 ```
 ---
 
