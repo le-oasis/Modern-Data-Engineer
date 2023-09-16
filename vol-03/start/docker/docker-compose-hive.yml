@@ -1,0 +1,84 @@
+version: '3'
+
+services:
+  
+# Namenode: HDFS
+  namenode:
+      image: dimeji/hadoop-namenode:latest
+      container_name: hadoop-namenode
+      volumes:
+        - namenode:/hadoop/dfs/name
+      environment:
+        - CLUSTER_NAME=test
+      env_file:
+        - ${PWD}/hadoop-hive.env
+      ports:
+        - "50070:50070"
+      networks:
+        - oasiscorp
+
+  # Datanode: HDFS      
+  datanode:
+      image: dimeji/hadoop-datanode:latest
+      container_name: hadoop-datanode
+      volumes:
+        - datanode:/hadoop/dfs/data
+      env_file:
+        - ${PWD}/hadoop-hive.env
+      environment:
+        SERVICE_PRECONDITION: "namenode:50070"
+      ports:
+        - "50075:50075"
+      depends_on:
+      - namenode
+      networks:
+        - oasiscorp
+
+  # Hive: A Hive Metastore and a Hive Metastore Server
+  hive:
+      image: dimeji/hive-metastore
+      hostname: hive
+      container_name: hive-metastore
+      env_file:
+        - ${PWD}/hadoop-hive.env
+      command: /opt/hive/bin/hive --service metastore
+      environment:
+        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 oasispostgres:5432"
+      ports:
+        - "9083:9083"
+      depends_on:
+        - namenode
+        - datanode
+      networks:
+        - oasiscorp
+      restart: on-failure
+
+      # /opt/hive/conf
+
+  # Hive Server: A Hive Metastore and a Hive Metastore Server    
+  hive-server:
+      image: dimeji/hive-server
+      container_name: hive-server
+      env_file:
+        - ${PWD}/hadoop-hive.env
+      environment:
+        HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive/metastore"
+        SERVICE_PRECONDITION: "hive:9083"
+      ports:
+        - "10000:10000"
+      depends_on:
+        - hive
+      networks:
+        - oasiscorp
+
+
+# Volumes 
+volumes:
+  namenode:
+  datanode:
+
+
+# Network Bridge Connection
+networks:
+  oasiscorp:
+    driver: bridge       
