@@ -8,10 +8,10 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" <<-EOSQL
 
   \c metastore
 
-  \i /var/lib/postgresql/hive/hive-schema-2.3.0.postgres.sql
-  \i /var/lib/postgresql/hive/hive-txn-schema-2.3.0.postgres.sql
-  \i /var/lib/postgresql/hive/upgrade-2.3.0-to-3.0.0.postgres.sql
-  \i /var/lib/postgresql/hive/upgrade-3.0.0-to-3.1.0.postgres.sql
+  \i /hive/hive-schema-2.3.0.postgres.sql
+  \i /hive/hive-txn-schema-2.3.0.postgres.sql
+  \i /hive/upgrade-2.3.0-to-3.0.0.postgres.sql
+  \i /hive/upgrade-3.0.0-to-3.1.0.postgres.sql
 
   \pset tuples_only
   \o /tmp/grant-privs
