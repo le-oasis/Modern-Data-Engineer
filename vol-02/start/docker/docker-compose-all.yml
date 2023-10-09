@@ -33,7 +33,7 @@ services:
         ports:
           - "8888:8888"
         env_file:
-          - .env
+        - .env
         volumes:
           - ${PWD}/lakehouse/jupyter-notebooks:/home/jovyan/work/notebooks/
           - ${PWD}/lakehouse/spark/resources/data:/home/jovyan/work/data/
