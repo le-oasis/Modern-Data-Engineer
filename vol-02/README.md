@@ -66,6 +66,14 @@ mysql>
 
 ## 2.2 Create a Table and add some Data
 1. Reconnect to the Docker mysql container. `docker exec -it mysql bash` and run `mysql -u dataeng -p` and re-enter your password.
+
+1.1 use the default database
+
+~~~
+mysql> use default;
+~~~
+
+
 2. Create the customers table
 3. Add some customers
 

@@ -49,7 +49,7 @@ services:
     container_name: zeppelin
     volumes:
       - ${PWD}/lakehouse/zepplin/notebook:/notebook
-      - ${PWD}/logs:/logs
+      - ${PWD}/lakehouse/zepplin/logs:/logs
       - ${PWD}/lakehouse/spark/resources/data:/learn
       # - ${SPARK_HOME}:/spark
     environment:
