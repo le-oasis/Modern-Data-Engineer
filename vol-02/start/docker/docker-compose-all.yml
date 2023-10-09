@@ -32,8 +32,9 @@ services:
             - oasiscorp
         ports:
           - "8888:8888"
+        env_file:
+          - .env
         volumes:
-
           - ${PWD}/lakehouse/jupyter-notebooks:/home/jovyan/work/notebooks/
           - ${PWD}/lakehouse/spark/resources/data:/home/jovyan/work/data/
           - ${PWD}/lakehouse/spark/resources/jars:/home/jovyan/work/jars/
