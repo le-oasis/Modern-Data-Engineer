@@ -1,76 +1,81 @@
-version: '3'
-
+version: '3.7'
 services:
-  
-# Namenode: HDFS
-  namenode:
-      image: dimeji/hadoop-namenode:latest
-      container_name: hadoop-namenode
-      volumes:
-        - namenode:/hadoop/dfs/name
-      environment:
-        - CLUSTER_NAME=test
-      env_file:
-        - ${PWD}/hadoop-hive.env
-      ports:
-        - "50070:50070"
-      networks:
-        - oasiscorp
+    postgres:
+        image: postgres:9.6
+        container_name: postgres_container
+        environment:
+            - POSTGRES_USER=airflow
+            - POSTGRES_PASSWORD=airflow
+            - POSTGRES_DB=airflow
+        ports:
+            - "5432:5432"
+        logging:
+            options:
+                max-size: 10m
+                max-file: "3"
+        networks: 
+                  - oasiscorp
+    database:
+          image: postgres:9.6
+          container_name: postgres-db
+          environment:
+            - POSTGRES_DB=temp_db
+            - POSTGRES_PASSWORD=passw0rd
+            - PGDATA=/var/lib/postgresql/data/pgdata
+          volumes:
+            - ${PWD}/data:/var/lib/postgresql/data/lmwn
+          logging:
+              options:
+                max-size: 10m
+                max-file: "3"
+          networks: 
+                  - oasiscorp
+    namenode:
+        image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
+        container_name: hive-namenode
+        volumes:
+            - namenode:/hadoop/dfs/name
+        environment:
+            - CLUSTER_NAME=test
+        env_file:
+            - ${PWD}/hadoop-hive.env
+        ports:
+            - "50070:50070"
+        networks: 
+                  - oasiscorp
 
-  # Datanode: HDFS      
-  datanode:
-      image: dimeji/hadoop-datanode:latest
-      container_name: hadoop-datanode
-      volumes:
-        - datanode:/hadoop/dfs/data
-      env_file:
-        - ${PWD}/hadoop-hive.env
-      environment:
-        SERVICE_PRECONDITION: "namenode:50070"
-      ports:
-        - "50075:50075"
-      depends_on:
-      - namenode
-      networks:
-        - oasiscorp
-
-  # Hive: A Hive Metastore and a Hive Metastore Server
-  hive:
-      image: dimeji/hive-metastore
-      hostname: hive
-      container_name: hive-metastore
-      env_file:
-        - ${PWD}/hadoop-hive.env
-      command: /opt/hive/bin/hive --service metastore
-      environment:
-        SERVICE_PRECONDITION: "namenode:50070 datanode:50075 oasispostgres:5432"
-      ports:
-        - "9083:9083"
-      depends_on:
-        - namenode
-        - datanode
-      networks:
-        - oasiscorp
-      restart: on-failure
-
-      # /opt/hive/conf
-
-  # Hive Server: A Hive Metastore and a Hive Metastore Server    
-  hive-server:
-      image: dimeji/hive-server
-      container_name: hive-server
-      env_file:
-        - ${PWD}/hadoop-hive.env
-      environment:
-        HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive/metastore"
-        SERVICE_PRECONDITION: "hive:9083"
-      ports:
-        - "10000:10000"
-      depends_on:
-        - hive
-      networks:
-        - oasiscorp
-
+    datanode:
+        image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
+        volumes:
+            - datanode:/hadoop/dfs/data
+        env_file:
+            - ./hadoop-hive.env
+        environment:
+            SERVICE_PRECONDITION: "namenode:50070"
+        ports:
+            - "50075:50075"
+    hive-metastore-postgresql:
+        image: bde2020/hive-metastore-postgresql:2.3.0
+    hive-metastore:
+        image: bde2020/hive:2.3.2-postgresql-metastore
+        env_file:
+            - ./hadoop-hive.env
+        command: /opt/hive/bin/hive --service metastore
+        environment:
+            SERVICE_PRECONDITION: "namenode:50070 datanode:50075 hive-metastore-postgresql:5432"
+        ports:
+            - "9083:9083"
+    hive-server:
+        image: bde2020/hive:2.3.2-postgresql-metastore
+        container_name: hive-server
+        env_file:
+            - ./hadoop-hive.env
+        environment:
+            HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
+            SERVICE_PRECONDITION: "hive-metastore:9083"
+        ports:
+            - "10000:10000"
+            - "10002:10002"
 
 # Volumes 
 volumes:
