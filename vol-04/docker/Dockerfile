@@ -4,7 +4,7 @@ FROM apache/zeppelin:0.9.0
 # Define Spark and Hadoop versions
 ENV SPARK_VERSION=3.0.1
 ENV HADOOP_VERSION=3.2
-ENV SPARK_INSTALL_ROOT=/lakehouse/spark
+ENV SPARK_INSTALL_ROOT=/spark
 
 # Define the Spark home
 ENV SPARK_HOME=${SPARK_INSTALL_ROOT}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}

@@ -1,0 +1,5 @@
+sudo chmod -R 777 /workspace/Modern-Data-Engineer/vol-04/docker/lakehouse/jupyter/notebooks
+
+sudo rm -rf 
+
+sudo rm -r

@@ -4,23 +4,23 @@
 PWD=${PWD}  # Current working directory
 DOCKER_NETWORK_NAME='mde'
 DOCKER_COMPOSE_FILE='docker-compose.yaml'
-
+jupyter_url=$(docker logs $(docker ps -q --filter "ancestor=jupyter/pyspark-notebook:spark-3.2.0") 2>&1 | grep 'http://127.0.0.1' | tail -1 | sed -n 's/.*http:\/\/127.0.0.1:\([0-9]\{4\}\).*/\1/p')
 # Function to apply spark.conf (currently empty)
 function sparkConf() {
   echo "applying spark.conf"
 }
 
-# Function to create a Docker network
-function createNetwork() {
-  cmd="docker network ls | grep ${DOCKER_NETWORK_NAME}"
-  eval $cmd
-  retVal=$?
-  if [ $retVal -ne 0 ]; then
-    docker network create -d bridge ${DOCKER_NETWORK_NAME}
-  else
-    echo "docker network already exists ${DOCKER_NETWORK_NAME}"
-  fi
-}
+# # Function to create a Docker network
+# function createNetwork() {
+#   cmd="docker network ls | grep ${DOCKER_NETWORK_NAME}"
+#   eval $cmd
+#   retVal=$?
+#   if [ $retVal -ne 0 ]; then
+#     docker network create -d bridge ${DOCKER_NETWORK_NAME}
+#   else
+#     echo "docker network already exists ${DOCKER_NETWORK_NAME}"
+#   fi
+# }
 
 # Function to start the environment
 function start() {
@@ -29,10 +29,11 @@ function start() {
     echo "mysqldir doesn't exist. Adding docker/data/mysqldir for mysql database"
     mkdir "${PWD}/data/mysqldir"
   fi
-  createNetwork
   docker-compose -f ${DOCKER_COMPOSE_FILE} up -d --remove-orphans mysql
   docker-compose -f ${DOCKER_COMPOSE_FILE} up -d --remove-orphans zeppelin
+  docker-compose -f ${DOCKER_COMPOSE_FILE} up -d --remove-orphans jupyter
   echo "Zeppelin will be running on http://127.0.0.1:8080"
+  echo "Jupyter will be running on http://127.0.0.1:$jupyter_url"
 }
 
 # Function to stop the environment

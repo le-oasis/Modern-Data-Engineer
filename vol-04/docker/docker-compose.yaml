@@ -1,5 +1,9 @@
 version: '3'
+
+
 services:
+
+
   mysql:
     image: mysql:8.0.23
     container_name: mysql
@@ -15,7 +19,7 @@ services:
     ports:
       - 3306:3306
     networks:
-      - mde
+      - oasiscorp
     hostname: mysql
   
 
@@ -69,12 +73,11 @@ services:
       - 4040:4040
       - 4041:4041
     networks:
-      - mde
+      - oasiscorp
     hostname: "zeppelin"
     depends_on:
       - mysql
 
 networks:
-  mde:
-    external:
-      name: mde
+  oasiscorp:
+    driver: bridge
