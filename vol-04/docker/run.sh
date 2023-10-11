@@ -25,7 +25,7 @@ function createNetwork() {
 # Function to start the environment
 function start() {
   # Check if mysqldir directory exists, if not, create it
-  if [ ! -d "${PWD}/data/mysqldir" -d ]; then
+  if [ ! -d "${PWD}/lakehouse/mysql/data/mysqldir" -d ]; then
     echo "mysqldir doesn't exist. Adding docker/data/mysqldir for mysql database"
     mkdir "${PWD}/data/mysqldir"
   fi
@@ -47,8 +47,8 @@ function restart() {
 
 # Function to initialize the Hive Metastore
 function hiveInit() {
-  docker cp "${PWD}/hive/install/hive-schema-2.3.0.mysql.sql" "mysql:/"
-  docker cp "${PWD}/hive/install/hive-txn-schema-2.3.0.mysql.sql" "mysql:/"
+  docker cp "${PWD}/lakehouse/hive/install/hive-schema-2.3.0.mysql.sql" "mysql:/"
+  docker cp "${PWD}/lakehouse/hive/install/hive-txn-schema-2.3.0.mysql.sql" "mysql:/"
 }
 
 # Function to connect to MySQL as root and execute SQL commands

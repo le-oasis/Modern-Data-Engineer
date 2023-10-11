@@ -259,6 +259,17 @@ docker/ch-03/start/docker/data/mysqldir
 vol-01/start/docker/data/mysqldir/*
 vol-02/start/docker/data/mysqldir/*
 vol-03/start/docker/data/mysqldir/*
+vol-04/docker/lakehouse/mysql/data/mysqldir/*
+vol-04/lakehouse/mysql/data/mysqldir/*
+
 
 #Ignore the ipynb checkpoints
 *.ipynb_checkpoints
+
+
+# ignore the logs 
+*.logs
+*.log
+
+#env
+*.env
