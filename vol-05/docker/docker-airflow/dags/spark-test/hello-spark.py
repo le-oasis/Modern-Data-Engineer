@@ -35,7 +35,7 @@ with DAG(
 # Sequence of Tasks
 Spark_Test = SparkSubmitOperator(task_id='Spark_Test',
                                               application='/usr/local/spark/app/spark-test/spark.py',
-                                              conn_id= 'oasis_con_spark', 
+                                              conn_id= 'spark_connect', 
                                               total_executor_cores=2,
                                               executor_cores=2,
                                               executor_memory='5g',
