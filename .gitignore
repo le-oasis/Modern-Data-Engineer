@@ -273,3 +273,5 @@ vol-04/lakehouse/mysql/data/mysqldir/*
 
 #env
 *.env
+
+vol-05/docker/minio
