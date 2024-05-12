@@ -142,6 +142,8 @@ services:
           - ./spark/resources/jars:/home/jovyan/work/jars/
           - ${PWD}/spark/conf:/usr/local/spark/conf
         restart: always
+        env_file:
+          - .env
         depends_on:
                 - postgres
 
